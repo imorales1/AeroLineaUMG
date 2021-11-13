@@ -9,7 +9,7 @@ namespace AeroLinea.Db
 {
     public class CompañiasDAL:CadenaDB
     {
-        public DataTable RegistrarCompañias(string Nombre, int? IdCompañia)
+        public DataTable Buscar(string Criterio, int? IdCompañia = null)
         {
             DataTable tbl = new DataTable();
             using(MySqlConnection cn = new MySqlConnection(cadena))
@@ -21,7 +21,7 @@ namespace AeroLinea.Db
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("PIdCompañia", IdCompañia == null ? null : IdCompañia);
-                        cmd.Parameters.AddWithValue("PNombre", Nombre == null ? null: Nombre);
+                        cmd.Parameters.AddWithValue("PNombre", Criterio == "" ? null: Criterio);
                         MySqlDataReader rd = cmd.ExecuteReader();
                         tbl.Load(rd);
                     }

@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>PROYECTO-UMG</title>
+    <title>Aero Puerto GT</title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -37,7 +37,7 @@
 
                 <!-- Preloader -->
                 <div class="preloader flex-column justify-content-center align-items-center">
-                    <img class="animation__shake" src="../Content/AdminLTE-master/dist/img/BnaderaGT.png" alt="DiacoGT" height="60" width="60">
+                    <img class="animation__shake" src="../Content/AdminLTE-master/dist/img/BnaderaGT.png" alt="AeroLinea" height="60" width="60">
                 </div>
 
                 <!-- Navbar -->
@@ -102,10 +102,10 @@
                             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
                                 <li class="nav-item">
-                                    <asp:LinkButton href="/Forms/FrmGeneracionQuejas.aspx" ID="BtnMenu1" runat="server" CssClass="nav-link"><i class="nav-icon fas fa-book-dead"></i><p>Realizar Queja</p></asp:LinkButton>
+                                    
                                 </li>
                                 <li class="nav-item">
-                                    <asp:LinkButton href="/Forms/FrmConsultasConsumidor.aspx" ID="LinkButton2" runat="server" CssClass="nav-link"><i class="nav-icon fas fa-search-plus"></i><p>Consultar mi Queja</p></asp:LinkButton>
+                                    
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">

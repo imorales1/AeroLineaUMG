@@ -74,3 +74,15 @@ D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\AeroLinea.csproj.CoreCompileIn
 D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\AeroLinea.csproj.CopyComplete
 D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\AeroLinea.dll
 D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\AeroLinea.pdb
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\MySql.Data.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\Google.Protobuf.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\ZstdNet.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\K4os.Compression.LZ4.Streams.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\BouncyCastle.Crypto.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\Ubiety.Dns.Core.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\System.Memory.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\System.Buffers.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\K4os.Compression.LZ4.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\K4os.Hash.xxHash.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\System.Numerics.Vectors.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\MySql.Data.xml

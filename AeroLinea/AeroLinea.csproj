@@ -2178,9 +2178,12 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Forms\FrmCompañias.aspx" />
     <Content Include="Forms\Inicio.aspx" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -2463,6 +2466,8 @@
     <Content Include="Content\AdminLTE-master\plugins\toastr\toastr.js.map" />
     <Content Include="Content\AdminLTE-master\README.md" />
     <Content Include="Master.Master" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Content\toastr.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Querys\Script Creación BD.sql" />
     <Content Include="Querys\Stored Procedures.sql" />
@@ -2479,6 +2484,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
     <Content Include="Scripts\WebForms\DetailsView.js" />
     <Content Include="Scripts\WebForms\Focus.js" />
     <Content Include="Scripts\WebForms\GridView.js" />
@@ -2531,6 +2538,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmCompañias.aspx.cs">
+      <DependentUpon>FrmCompañias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmCompañias.aspx.designer.cs">
+      <DependentUpon>FrmCompañias.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
