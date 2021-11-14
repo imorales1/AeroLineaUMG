@@ -31,5 +31,29 @@ namespace AeroLinea.Forms
 
             }
         }
+
+        protected void CmdAgregar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MultiView.SetActiveView(ViewTecleo);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        protected void CmdCancelar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MultiView.SetActiveView(ViewBusqueda);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

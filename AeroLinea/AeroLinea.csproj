@@ -160,6 +160,7 @@
     <Content Include="Content\AdminLTE-master\dist\img\credit\visa.png" />
     <Content Include="Content\AdminLTE-master\dist\img\default-150x150.png" />
     <Content Include="Content\AdminLTE-master\dist\img\icons.png" />
+    <Content Include="Content\AdminLTE-master\dist\img\LogoAv.jpg" />
     <Content Include="Content\AdminLTE-master\dist\img\photo1.png" />
     <Content Include="Content\AdminLTE-master\dist\img\photo2.png" />
     <Content Include="Content\AdminLTE-master\dist\img\photo3.jpg" />

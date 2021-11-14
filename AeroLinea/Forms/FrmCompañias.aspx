@@ -30,7 +30,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <br />
-                                        <asp:LinkButton ID="CmdExportar" runat="server" CssClass="btn btn-primary" Width="100%">Grabar Nuevo</asp:LinkButton>
+                                        <asp:LinkButton ID="CmdAgregar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdAgregar_Click">Grabar Nuevo</asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,66 @@
                             </div>
                         </asp:View>
                         <asp:View ID="ViewTecleo" runat="server">
-
+                            <div class="col-md-12"></div>
+                            <div class="col-md-12">
+                                <div class="card card-primary">
+                                    <div class="card-header">
+                                        <center>
+                                            <h3 class="card-title">Registro de Compañias</h3>
+                                        </center>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <asp:Label Text="Nombre" runat="server" />
+                                                    <asp:TextBox ID="TxtNombre" runat="server" CssClass="form-control input-sm select2" Width="100%"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <asp:Label Text="Dirección" runat="server" />
+                                                        <asp:TextBox ID="TxtDireccion" runat="server" CssClass="form-control input-sm select2" Width="100%"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <asp:Label Text="Correo" runat="server" />
+                                                        <asp:TextBox ID="TxtCorreo" runat="server" CssClass="form-control input-sm select2" Width="100%"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <asp:Label Text="Telefono" runat="server" />
+                                                        <asp:TextBox ID="TxtTelefono" runat="server" CssClass="form-control input-sm select2" Width="100%"></asp:TextBox>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <br />
+                                                        <asp:Linkbutton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%"><li class="fa fa-save">Grabar</li></asp:Linkbutton>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <br />
+                                                        <asp:Linkbutton ID="CmdCancelar" runat="server" CssClass="btn btn-danger" Width="100%" OnClick="CmdCancelar_Click">Cancelar</asp:Linkbutton>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </asp:View>
                     </asp:MultiView>
                 </div>
