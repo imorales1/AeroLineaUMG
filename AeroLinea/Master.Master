@@ -135,10 +135,10 @@
                                     </a>
                                     <ul class="nav nav-treeview"> 
                                         <li class="nav-item"> 
-                                            <asp:LinkButton href="/Forms/FrmConsultaQuejas.aspx" ID="BtnConsulta" runat="server" Text=" Reporte Quejas" CssClass="nav-link far fa-list-alt"></asp:LinkButton>
+                                            <asp:LinkButton href="" ID="BtnConsulta" runat="server" Text=" Reporte Quejas" CssClass="nav-link far fa-list-alt"></asp:LinkButton>
                                         </li>
                                         <li class="nav-item"> 
-                                            <asp:LinkButton href="/Forms/FrmConsultaQuejasPorFecha.aspx" ID="LinkButton1" runat="server" Text=" Reporte Quejas Por Fecha" CssClass="nav-link fas fa-calendar-alt"></asp:LinkButton>
+                                            <asp:LinkButton href="" ID="LinkButton1" runat="server" Text=" Reporte Quejas Por Fecha" CssClass="nav-link fas fa-calendar-alt"></asp:LinkButton>
                                         </li>
                                     </ul>
                                 </li>
