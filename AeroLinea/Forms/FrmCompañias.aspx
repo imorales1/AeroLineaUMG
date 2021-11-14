@@ -72,6 +72,9 @@
                                 </div>
                             </div>
                         </asp:View>
+                        <asp:View ID="ViewTecleo" runat="server">
+
+                        </asp:View>
                     </asp:MultiView>
                 </div>
             </section>
