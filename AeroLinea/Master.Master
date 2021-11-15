@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="Content/AdminLTE-master/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="Content/AdminLTE-master/plugins/summernote/summernote-bs4.min.css">
+    <link href="Content/toastr.min.css" rel="stylesheet" />
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <form id="form1" runat="server">
@@ -220,7 +221,7 @@
             <script src='<%= ResolveClientUrl("~/Scripts/bootbox.js") %>'></script>
             <script src='<%= ResolveClientUrl("~/Scripts/bootbox.locales.min.js") %>'></script>
             <script src='<%= ResolveClientUrl("~/Scripts/bootbox.min.js") %>'></script>
-
+            <script src='<%= ResolveClientUrl("Scripts/toastr.min.js") %>'></script> 
             <script type="text/javascript">
                 $(document).ready(function () {
 
@@ -256,6 +257,27 @@
                         url = window.location.host + "~/Forms/FrmLogin.aspx";
                         window.location.href = "FrmLogin.aspx";
                     });
+                }
+
+                function RegistroGrabadoToasTR() {
+                    toastr.success("Registro grabado con éxito", "Buen Trabajo",
+                        {
+                            closeButton: false,
+                            debug: false,
+                            newestOnTop: false,
+                            progressBar: false,
+                            positionClass: "toastr-top-right",
+                            preventDuplicates: true,
+                            onclick: null,
+                            showDuration: true,
+                            hideDuration: "300",
+                            timeOut: "3000",
+                            extendedTimeOut: "1000",
+                            showEasing: "swing",
+                            hideEasing: "linear",
+                            showMethod: "fadeIn",
+                            hideMethod: "fadeOut"
+                        });
                 }
 
             </script>

@@ -86,14 +86,14 @@
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <asp:Label Text="Nombre" runat="server" />
-                                                    <asp:TextBox ID="TxtNombre" runat="server" CssClass="form-control input-sm select2" Width="100%"></asp:TextBox>
+                                                    <asp:TextBox ID="TxtNombre" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="40"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <asp:Label Text="Dirección" runat="server" />
-                                                        <asp:TextBox ID="TxtDireccion" runat="server" CssClass="form-control input-sm select2" Width="100%"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtDireccion" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="60"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -101,7 +101,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <asp:Label Text="Correo" runat="server" />
-                                                        <asp:TextBox ID="TxtCorreo" runat="server" CssClass="form-control input-sm select2" Width="100%"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtCorreo" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="60"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -109,7 +109,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <asp:Label Text="Telefono" runat="server" />
-                                                        <asp:TextBox ID="TxtTelefono" runat="server" CssClass="form-control input-sm select2" Width="100%"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtTelefono" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="12"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -117,7 +117,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <br />
-                                                        <asp:Linkbutton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%"><li class="fa fa-save">Grabar</li></asp:Linkbutton>
+                                                        <asp:Linkbutton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdGrabarModificar_Click"><li class="fa fa-save">Grabar</li></asp:Linkbutton>
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,4 +141,9 @@
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContenScriptBody" runat="server">
+    <%--<script type="text/javascript">
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args) {
+            bindEvent();
+        });
+    </script>--%>
 </asp:Content>

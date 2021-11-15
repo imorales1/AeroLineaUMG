@@ -26,6 +26,7 @@ namespace AeroLinea.Forms
                 comp.CriterioBusqueda = TxtCriterioBusqueda.Text;
                 GrdCompañias.DataSource = comp.Buscar();
                 GrdCompañias.DataBind();
+                LblRegistros.Text = "Registros: " + GrdCompañias.Rows.Count.ToString();
             }catch(Exception ex)
             {
 
@@ -53,6 +54,24 @@ namespace AeroLinea.Forms
             catch (Exception ex)
             {
                 throw;
+            }
+        }
+
+        protected void CmdGrabarModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Compañias comp = new Compañias();
+                comp.Nombre = TxtNombre.Text;
+                comp.Direccion = TxtDireccion.Text;
+                comp.Correo = TxtCorreo.Text;
+                comp.Telefono = Convert.ToInt64(TxtTelefono.Text);
+                comp.GrabarModificar();
+                Helper.Generica.MensajeGrabar(this);
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }

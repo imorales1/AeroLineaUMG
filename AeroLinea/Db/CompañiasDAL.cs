@@ -36,5 +36,30 @@ namespace AeroLinea.Db
                 return tbl;
             }
         }
+
+        public void GrabarModificar(string Nombre, string Direccion, string Correo, Int64 Telefono, int? IdCompañia)
+        {
+            using(MySqlConnection cn = new MySqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("UpIuCompañias", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PNombre", Nombre);
+                        cmd.Parameters.AddWithValue("PDireccion", Direccion);
+                        cmd.Parameters.AddWithValue("PCorreo", Correo);
+                        cmd.Parameters.AddWithValue("PTelefono", Telefono);
+                        cmd.Parameters.AddWithValue("PIdCompañia", IdCompañia == 0 ? null : IdCompañia);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

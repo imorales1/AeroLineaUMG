@@ -86,3 +86,12 @@ D:\source\AeroLinea\AeroLinea\AeroLinea\bin\K4os.Compression.LZ4.dll
 D:\source\AeroLinea\AeroLinea\AeroLinea\bin\K4os.Hash.xxHash.dll
 D:\source\AeroLinea\AeroLinea\AeroLinea\bin\System.Numerics.Vectors.dll
 D:\source\AeroLinea\AeroLinea\AeroLinea\bin\MySql.Data.xml
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\ClosedXML.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\DocumentFormat.OpenXml.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\ExcelNumberFormat.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\System.IO.FileSystem.Primitives.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\System.IO.Packaging.dll
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\ClosedXML.pdb
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\ClosedXML.xml
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\DocumentFormat.OpenXml.xml
+D:\source\AeroLinea\AeroLinea\AeroLinea\bin\ExcelNumberFormat.xml

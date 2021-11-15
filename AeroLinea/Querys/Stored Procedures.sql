@@ -20,5 +20,28 @@
     
 	CALL UpSCompañias(NULL,NULL);
     
+    DELIMITER $$
+    CREATE PROCEDURE UpIuCompañias(
+		IN PNombre varchar(40)
+        , IN PDireccion VARCHAR(60)
+        , IN PCorreo VARCHAR(60)
+        , IN PTelefono BIGINT
+        , IN PIdCompañia INT
+	)
+    BEGIN
+		IF NOT EXISTS(SELECT null
+						FROM TblCompañias
+                        WHERE IdCompañia = 0
+		)
+        THEN
+			INSERT INTO TblCompañias(Nombre, Direccion, Correo, Telefono)
+            VALUES(PNombre, PDireccion, PCorreo, PTelefono);
+        ELSE
+			UPDATE TblCompañias SET Nombre = PNombre, Direccion = PDireccion
+								, Correo = PDireccion, Telefono = PTelefono
+			WHERE IdCOmpañia = PIdCompañia;
+		END IF;
+    END
+    $$
     
     
