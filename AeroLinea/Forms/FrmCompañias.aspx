@@ -8,7 +8,7 @@
         <ContentTemplate>
             <section class="content-header">
                 <h1>Compañías</h1>
-            </section>
+            </section>   
             <section class="content">
                 <div class="box-body">
                     <asp:MultiView ID="MultiView" runat="server">
@@ -141,9 +141,4 @@
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContenScriptBody" runat="server">
-    <%--<script type="text/javascript">
-        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function (evt, args) {
-            bindEvent();
-        });
-    </script>--%>
 </asp:Content>
