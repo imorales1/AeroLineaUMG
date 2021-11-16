@@ -41,7 +41,7 @@
                                             <h3 class="card-title">Compañías</h3>
                                         </div>
                                         <div class="card-body table-responsive">
-                                            <asp:GridView ID="GrdCompañias" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False">
+                                            <asp:GridView ID="GrdCompañias" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" OnRowDeleting="GrdCompañias_RowDeleting" OnSelectedIndexChanged="GrdCompañias_SelectedIndexChanged1">
                                                 <Columns>
                                                     <asp:BoundField DataField="Nombre" HeaderText="Nombre" SortExpression="Nombre" />
                                                     <asp:BoundField DataField="Direccion" HeaderText="Dirección" SortExpression="Direccion" />
@@ -51,7 +51,7 @@
                                                         <EditItemTemplate>
                                                         </EditItemTemplate>
                                                         <ItemTemplate>
-                                                            <asp:HiddenField ID="HdnCompañia" runat="server" Value='<%Eval("IdCompañia") %>' />
+                                                            <asp:HiddenField ID="HdnCompañia" runat="server" Value='<%# Eval("IdCompañia") %>' />
                                                             <asp:LinkButton ID="CmdCompañia" runat="server" CommandName="Select" CssClass="btn btn-primary btn-xs"><li class="fas fa-edit"></li></asp:LinkButton>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />

@@ -93,6 +93,36 @@ namespace AeroLinea.Helper
             }
         }
 
+        public static void Mensaje(Page pagina, string Mensaje)
+        {
+            try
+            {
+                ScriptManager.RegisterStartupScript(pagina, pagina.GetType(), "Pop", "Mensaje('" + Mensaje + "');", true);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
+        public static bool ValidarTextBox(ref TextBox control)
+        {
+            try
+            {
+                if (control.Text.Equals(""))
+                {
+                    control.Focus();
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

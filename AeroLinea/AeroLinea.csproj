@@ -2200,6 +2200,7 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Forms\FrmAviones.aspx" />
     <Content Include="Forms\FrmCompañias.aspx" />
     <Content Include="Forms\Inicio.aspx" />
     <Content Include="Global.asax" />
@@ -2555,6 +2556,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmAviones.aspx.cs">
+      <DependentUpon>FrmAviones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmAviones.aspx.designer.cs">
+      <DependentUpon>FrmAviones.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmCompañias.aspx.cs">
       <DependentUpon>FrmCompañias.aspx</DependentUpon>

@@ -5,11 +5,10 @@
     
     INSERT INTO TblCompañias(Nombre,Direccion, Correo, Telefono)
     
-    
-    DELIMITER $$
+   DELIMITER $$
     CREATE PROCEDURE UpSCompañias(
 		IN PIdCompañia INT 
-        ,OUT PNombre VARCHAR(40))
+        ,IN PNombre VARCHAR(40))
     BEGIN
 		SELECT IdCompañia, Nombre, Direccion, Correo, Telefono
         FROM TblCompañias
@@ -18,9 +17,8 @@
     END 
     $$
     
-	CALL UpSCompañias(NULL,NULL);
     
-    DELIMITER $$
+	DELIMITER $$
     CREATE PROCEDURE UpIuCompañias(
 		IN PNombre varchar(40)
         , IN PDireccion VARCHAR(60)
@@ -31,7 +29,7 @@
     BEGIN
 		IF NOT EXISTS(SELECT null
 						FROM TblCompañias
-                        WHERE IdCompañia = 0
+                        WHERE IdCompañia = PIdCompañia
 		)
         THEN
 			INSERT INTO TblCompañias(Nombre, Direccion, Correo, Telefono)
@@ -41,6 +39,14 @@
 								, Correo = PDireccion, Telefono = PTelefono
 			WHERE IdCOmpañia = PIdCompañia;
 		END IF;
+    END
+    $$
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpEliminarCompañias(IN PIdCompañia INT)
+    BEGIN
+		DELETE FROM TblCompañias
+        WHERE IdCompañia = PIdCompañia;
     END
     $$
     

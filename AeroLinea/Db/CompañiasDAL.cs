@@ -54,6 +54,30 @@ namespace AeroLinea.Db
                         cmd.Parameters.AddWithValue("PIdCompañia", IdCompañia == 0 ? null : IdCompañia);
                         cmd.ExecuteNonQuery();
                     }
+                    cn.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void Eliminar(int IdCompañia)
+        {
+            using(MySqlConnection cn = new MySqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using(MySqlCommand cmd = new MySqlCommand("UpEliminarCompañias", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PIdCompañia", IdCompañia);
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    cn.Close();
                 }
                 catch (Exception)
                 {
