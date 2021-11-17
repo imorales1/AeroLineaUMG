@@ -7,6 +7,7 @@ using System.Data;
 using System.IO;
 using System.Web.UI.WebControls;
 using System.Web.UI;
+using AeroLinea.Db;
 
 namespace AeroLinea.Helper
 {
@@ -118,6 +119,35 @@ namespace AeroLinea.Helper
                 {
                     return true;
                 }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void LLenarCombos(ref DropDownList control)
+        {
+            try
+            {
+                DataTable table;
+                CombosDal combo = new CombosDal();
+
+                switch (control.ID.ToString())
+                {
+                    case "CboCompañiasF":
+                    case "CboCompañiasT":
+                        table = combo.ObtenerCompañias();
+                        break;
+                    default:
+                        table = null;
+                        break;
+                }
+
+                control.DataSource = table;
+                control.DataTextField = "Descripcion";
+                control.DataValueField = "ID";
+                control.DataBind();
             }
             catch (Exception)
             {
