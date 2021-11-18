@@ -134,7 +134,7 @@ namespace AeroLinea.Forms
             }
             catch(Exception ex)
             {
-                Helper.Generica.Mensaje(this, "Buscar");
+                Helper.Generica.Mensaje(this, ex.Message);
             }
         }
         enum ModoDeTecleo

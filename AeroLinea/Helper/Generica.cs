@@ -82,6 +82,12 @@ namespace AeroLinea.Helper
             }
         }
 
+        public enum ModoDeTecleo
+        {
+            Grabar = 1,
+            Modificar = 2
+        }
+
         public static void MensajeGrabar(Page pagina)
         {
             try
@@ -138,6 +144,10 @@ namespace AeroLinea.Helper
                     case "CboCompañiasF":
                     case "CboCompañiasT":
                         table = combo.ObtenerCompañias();
+                        break;
+                    case "CboPaisesF":
+                    case "CboPaisesT":
+                        table = combo.ObtenerPaises();
                         break;
                     default:
                         table = null;

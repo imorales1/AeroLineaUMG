@@ -5,7 +5,8 @@
     
     INSERT INTO TblCompañias(Nombre,Direccion, Correo, Telefono)
     
-   DELIMITER $$
+    
+    DELIMITER $$
     CREATE PROCEDURE UpSCompañias(
 		IN PIdCompañia INT 
         ,IN PNombre VARCHAR(40))
@@ -50,14 +51,27 @@
     END
     $$
     
-
-
+    SELECT * FROM TblCompañias
+    WHERE 
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpsCompañiasCombo()
+    BEGIN
+		SELECT 0 ID, "Ninguna" Descripcion
+        UNION ALL
+		SELECT IdCompañia ID, CONCAT(IdCompañia, "-", Nombre) Descripcion
+        FROM TblCompañias;
+    END
+    $$
+    
     #---Creacion de procedimientos Tabla Aviones
+    
+    CALL UpIuAeroNavesCompañias(4,24,2000,"PRUEBA", 1, 0);
     
     DELIMITER $$
     CREATE PROCEDURE UpIuAeroNavesCompañias(IN PTurbinas INT
 											, IN PAsientos INT
-                                            , IN PPeso DECIMAL(4,2)
+                                            , IN PPeso DECIMAL(6,2)
                                             , IN PModelo VARCHAR(25)
                                             , IN PIdCompañia INT
                                             , IN PIdAvion INT)
@@ -71,13 +85,13 @@
             VALUES(PTurbinas, PAsientos, PPeso, PModelo, PIdCompañia);
 		ELSE
 			UPDATE TblAviones SET Turbinas = PTurbinas, Pasajeros = PAsientos
-								 ,Peso = PPeso, Modelo = PModelo, PIdCompañia = IdCompañia
+								 ,Peso = PPeso, Modelo = PModelo, IdCompañia = PIdCompañia
 			WHERE IdAvion = PIdAvion;
         END IF;
     END
     $$
     
-      DELIMITER $$
+    DELIMITER $$
 	CREATE PROCEDURE UpSAeroNavesCompañias(IN PIdCompañia INT, IN PTurbinas INT, IN PModelo VARCHAR(25))
     BEGIN
 		SELECT CONCAT(b.IdCompañia, "-", b.Nombre) AS Compañia, a.IdAvion, a.Turbinas, a.Pasajeros, a.Peso, a.Modelo,  a.IdCompañia
@@ -88,4 +102,31 @@
         AND a.Modelo = IFNULL(PModelo, a.Modelo);
     END
     $$
-
+    
+    call UpSAeroNavesCompañias(null,null,null);
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpDAeroNaves(IN PIdAvion INT)
+    BEGIN
+		DELETE FROM TblAviones
+        WHERE IdAvion = PIdAvion;
+    END
+    $$
+    
+    
+    #------------ MAESTRO DE PAÍSES Y CIUDADES ------
+    
+    SELECT * FROM TblPaises;
+    # INSERT INTO TblPaises(Nombre)
+    VALUES("Guatemala"), ("Mexico"), ("El Salvador"), ("Estados Unidos")
+    
+    DELIMITER $$
+		CREATE PROCEDURE UpSPaisesCombo()
+        BEGIN
+			SELECT 0 ID, "Ninguno" Descripcion
+            UNION ALL
+            SELECT IdPais ID, CONCAT(IdPais,"-",Nombre) Descripcion
+            FROM TblPaises;
+        END
+    $$
+    

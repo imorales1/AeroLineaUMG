@@ -111,14 +111,14 @@
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-database"></i>
-                                        <p> Administración</p>
+                                        <p>Datos Maestros</p>
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <li class="nav-item">
-                                            <asp:LinkButton href="/Forms/FrmComercios.aspx" ID="BtnMenu2" runat="server" Text=" Comercios" CssClass="nav-link fas fa-building"></asp:LinkButton>
+                                            <asp:LinkButton href="/Forms/FrmCompañias.aspx" ID="BtnMenu2" runat="server" Text=" Compañias" CssClass="nav-link fas fa-building"></asp:LinkButton>
                                         </li>
                                         <li class="nav-item">
-                                            <asp:LinkButton href="/Forms/FrmSucursales.aspx" ID="BtnMenu3" runat="server" Text=" Sucursales" CssClass="nav-link fas fa-dumpster"></asp:LinkButton>
+                                            <asp:LinkButton href="/Forms/FrmAviones.aspx" ID="BtnMenu3" runat="server" Text=" Aero Naves" CssClass="nav-link fab fa-avianex"></asp:LinkButton>
                                         </li>
                                         
 <%--                                        <li class="nav-item">

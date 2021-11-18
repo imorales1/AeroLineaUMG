@@ -33,5 +33,30 @@ namespace AeroLinea.Db
             }
             return tbl;
         }
+
+        public DataTable ObtenerPaises()
+        {
+            DataTable tbl = new DataTable();
+            using (MySqlConnection cn = new MySqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("UpSPaisesCombo", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        MySqlDataReader Rd = cmd.ExecuteReader();
+                        tbl.Load(Rd);
+                    }
+
+                    cn.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+            return tbl;
+        }
     }
 }

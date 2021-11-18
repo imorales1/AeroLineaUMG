@@ -10,12 +10,14 @@ namespace AeroLinea.Forms
 {
     public partial class FrmAviones : System.Web.UI.Page
     {
+        private static ModoDeTecleo Modo;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 if (!Page.IsPostBack)
                 {
+                    Modo = ModoDeTecleo.Grabar;
                     MultiView.SetActiveView(ViewFiltro);
                     LLenarCombos();
                 }
@@ -55,10 +57,23 @@ namespace AeroLinea.Forms
                 an.Turbinas = Convert.ToInt32(TxtTurbinas.Text);
                 an.Pasajeros = Convert.ToInt32(TxtAsientos.Text);
                 an.Peso = Convert.ToDecimal(TxtPeso.Text);
-                an.Modelo = TxtModelo.Text;
+                an.Modelo = TxtModeloT.Text;
                 an.IdCompañia = Convert.ToInt32(CboCompañiasT.SelectedValue);
                 an.GrabarModificar();
-                Helper.Generica.Mensaje(this, "Registro Grabado con Éxito");
+
+                if(Modo == ModoDeTecleo.Grabar)
+                {
+                    Helper.Generica.Mensaje(this, "Registro Grabado con Éxito");
+                    LimpiarControles();
+                }
+                else
+                {
+                    Helper.Generica.Mensaje(this, "Registro Modificado con Éxito");
+                    LimpiarControles();
+                    AeroNaves.IdAvion = 0;
+                    MultiView.SetActiveView(ViewFiltro);
+                }
+                
             }catch(Exception ex)
             {
                 Helper.Generica.Mensaje(this, ex.Message);
@@ -87,6 +102,7 @@ namespace AeroLinea.Forms
                 an.Modelo = TxtModelo.Text;
                 GrdAeroNaves.DataSource = an.Buscar();
                 GrdAeroNaves.DataBind();
+                LblRegistros.Text = "Registros Encontrados:" + GrdAeroNaves.Rows.Count.ToString();
             }
             catch (Exception ex)
             {
@@ -98,11 +114,56 @@ namespace AeroLinea.Forms
         {
             try
             {
-                
+                CboCompañiasT.SelectedValue = "0";
+                TxtTurbinas.Text = string.Empty;
+                TxtAsientos.Text = string.Empty;
+                TxtPeso.Text = string.Empty;
+                TxtModeloT.Text = string.Empty;
+                Buscar();
             }catch(Exception ex)
             {
                 Helper.Generica.Mensaje(this, "Limpiar Campos");
             }
+        }
+
+        protected void GrdAeroNaves_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CboCompañiasT.SelectedValue = ((HiddenField)GrdAeroNaves.SelectedRow.Cells[5].FindControl("HdnIdCompañia")).Value.ToString();
+                TxtTurbinas.Text = GrdAeroNaves.SelectedRow.Cells[1].Text;
+                TxtAsientos.Text = GrdAeroNaves.SelectedRow.Cells[2].Text;
+                TxtPeso.Text = GrdAeroNaves.SelectedRow.Cells[3].Text;
+                TxtModeloT.Text = GrdAeroNaves.SelectedRow.Cells[4].Text.Equals("&nbsp;")? string.Empty : GrdAeroNaves.SelectedRow.Cells[4].Text;
+                AeroNaves.IdAvion = Convert.ToInt32(((HiddenField)GrdAeroNaves.SelectedRow.Cells[5].FindControl("HdnIdAvion")).Value);
+                Modo = ModoDeTecleo.Modificar;
+                MultiView.SetActiveView(ViewTecleo);
+            }
+            catch(Exception ex)
+            {
+                Helper.Generica.Mensaje(this, "SELECT");
+            }
+        }
+
+        protected void GrdAeroNaves_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                AeroNaves an = new AeroNaves();
+                AeroNaves.IdAvion = Convert.ToInt32(((HiddenField)GrdAeroNaves.Rows[e.RowIndex].Cells[5].FindControl("HdnIdAvion")).Value);
+                an.Eliminar();
+                Buscar();
+                AeroNaves.IdAvion = 0;
+            }catch(Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
+
+        enum ModoDeTecleo
+        {
+            Grabar = 1,
+            Modificar = 2
         }
     }
 }
