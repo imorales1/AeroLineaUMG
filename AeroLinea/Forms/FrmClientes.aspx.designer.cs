@@ -7,146 +7,146 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace AeroLinea
+namespace AeroLinea.Forms
 {
 
 
-    public partial class Master
+    public partial class FrmClientes
     {
 
         /// <summary>
-        /// Control head.
+        /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// Control form1.
+        /// Control PanelPrincipal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.UpdatePanel PanelPrincipal;
 
         /// <summary>
-        /// Control CmdLogin.
+        /// Control MultiView.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CmdLogin;
+        protected global::System.Web.UI.WebControls.MultiView MultiView;
 
         /// <summary>
-        /// Control PnlSesion.
+        /// Control ViewFiltro.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlSesion;
+        protected global::System.Web.UI.WebControls.View ViewFiltro;
 
         /// <summary>
-        /// Control CmdCerrarSesion.
+        /// Control TxtCriterio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CmdCerrarSesion;
+        protected global::System.Web.UI.WebControls.TextBox TxtCriterio;
 
         /// <summary>
-        /// Control PnlUsuario.
+        /// Control CmdBuscar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlUsuario;
+        protected global::System.Web.UI.WebControls.LinkButton CmdBuscar;
 
         /// <summary>
-        /// Control LblUsuario.
+        /// Control CmdExportar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblUsuario;
+        protected global::System.Web.UI.WebControls.LinkButton CmdExportar;
 
         /// <summary>
-        /// Control BtnMenu2.
+        /// Control CmdAgregar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BtnMenu2;
+        protected global::System.Web.UI.WebControls.LinkButton CmdAgregar;
 
         /// <summary>
-        /// Control BtnMenu3.
+        /// Control GrdClientes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BtnMenu3;
+        protected global::System.Web.UI.WebControls.GridView GrdClientes;
 
         /// <summary>
-        /// Control LinkButton2.
+        /// Control LblRegistros.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton2;
+        protected global::System.Web.UI.WebControls.Label LblRegistros;
 
         /// <summary>
-        /// Control LinkButton3.
+        /// Control ViewTecleo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.View ViewTecleo;
 
         /// <summary>
-        /// Control BtnConsulta.
+        /// Control TxtCiudadT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton BtnConsulta;
+        protected global::System.Web.UI.WebControls.TextBox TxtCiudadT;
 
         /// <summary>
-        /// Control LinkButton1.
+        /// Control CboPaisesT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton1;
+        protected global::System.Web.UI.WebControls.DropDownList CboPaisesT;
 
         /// <summary>
-        /// Control ContentPlaceHolder1.
+        /// Control CmdGrabarModificar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.LinkButton CmdGrabarModificar;
 
         /// <summary>
-        /// Control ContenScriptBody.
+        /// Control CmdCancelar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContenScriptBody;
+        protected global::System.Web.UI.WebControls.LinkButton CmdCancelar;
     }
 }

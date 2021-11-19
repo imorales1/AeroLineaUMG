@@ -71,7 +71,7 @@ namespace AeroLinea.Db
                 try
                 {
                     cn.Open();
-                    using(MySqlCommand cmd = new MySqlCommand())
+                    using(MySqlCommand cmd = new MySqlCommand("UpDAeroNaves",cn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("PIdAvion", IdAvion);

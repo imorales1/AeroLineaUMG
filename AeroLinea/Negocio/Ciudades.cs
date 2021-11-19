@@ -28,5 +28,30 @@ namespace AeroLinea.Negocio
                 throw;
             }
         }
+
+        public void GrabarModificar()
+        {
+            try
+            {
+                CiudadesDAL cd = new CiudadesDAL();
+                cd.GrabarModificar(Nombre, IdPais, IdCiudad);
+            }catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        public void Eliminar()
+        {
+            try
+            {
+                CiudadesDAL cd = new CiudadesDAL();
+                cd.Eliminar(IdCiudad);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

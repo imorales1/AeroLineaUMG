@@ -120,7 +120,12 @@
                                         <li class="nav-item">
                                             <asp:LinkButton href="/Forms/FrmAviones.aspx" ID="BtnMenu3" runat="server" Text=" Aero Naves" CssClass="nav-link fab fa-avianex"></asp:LinkButton>
                                         </li>
-                                        
+                                        <li class="nav-item">
+                                            <asp:LinkButton href="/Forms/FrmCiudades.aspx" ID="LinkButton2" runat="server" Text="Ciudades" CssClass="nav-link fab fa-avianex"></asp:LinkButton>
+                                        </li>
+                                        <li class="nav-item">
+                                            <asp:LinkButton href="/Forms/FrmClientes.aspx" ID="LinkButton3" runat="server" Text="Clientes" CssClass="nav-link fab fa-avianex"></asp:LinkButton>
+                                        </li>
 <%--                                        <li class="nav-item">
                                             <a href="pages/mailbox/read-mail.html" class="nav-link">
                                                 <i class="far fa-circle nav-icon"></i>

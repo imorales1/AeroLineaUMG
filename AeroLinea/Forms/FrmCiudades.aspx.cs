@@ -68,6 +68,7 @@ namespace AeroLinea.Forms
             try
             {
                 MultiView.SetActiveView(ViewFiltro);
+                Buscar();
             }
             catch (Exception ex)
             {
@@ -84,6 +85,7 @@ namespace AeroLinea.Forms
                 cd.Nombre = TxtCiudadF.Text;
                 GrdCiudades.DataSource = cd.Buscar();
                 GrdCiudades.DataBind();
+                Modo = ModoDeTecleo.Modificar;
             }
             catch (Exception ex)
             {
@@ -91,5 +93,78 @@ namespace AeroLinea.Forms
             }
         }
 
+        protected void GrdCiudades_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string[] DescripcionCiudad;
+                DescripcionCiudad = GrdCiudades.SelectedRow.Cells[1].Text.Split('-');
+                TxtCiudadT.Text = DescripcionCiudad[1];
+                CboPaisesT.SelectedValue = ((HiddenField)GrdCiudades.SelectedRow.Cells[2].FindControl("HdnPais")).Value.ToString();
+                Ciudades.IdCiudad = Convert.ToInt32(((HiddenField)GrdCiudades.SelectedRow.Cells[2].FindControl("HdnPais")).Value);
+                MultiView.SetActiveView(ViewTecleo);
+            }catch(Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
+
+        protected void GrdCiudades_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                Ciudades cd = new Ciudades();
+                Ciudades.IdCiudad = Convert.ToInt32(((HiddenField)GrdCiudades.Rows[e.RowIndex].Cells[2].FindControl("HdnCiudad")).Value);
+                cd.Eliminar();
+                Buscar();
+            }
+            catch (Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
+
+        protected void CmdGrabarModificar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Ciudades cd = new Ciudades();
+                cd.Nombre = TxtCiudadT.Text.Trim();
+                cd.IdPais = Convert.ToInt32(CboPaisesT.SelectedValue);
+                cd.GrabarModificar();
+                
+                if(Modo == ModoDeTecleo.Grabar)
+                {
+                    Helper.Generica.Mensaje(this, "Registro grabado con éxito");
+                   
+                }
+                else
+                {
+                    Helper.Generica.Mensaje(this, "Registro modificaco con éxito");
+                    Ciudades.IdCiudad = 0;
+                    MultiView.SetActiveView(ViewFiltro);
+                    Buscar();
+                    Modo = ModoDeTecleo.Grabar;
+                }
+
+                LimpiarCampos();
+            }
+            catch(Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
+
+        private void LimpiarCampos()
+        {
+            try
+            {
+                CboPaisesT.SelectedValue = "0";
+                TxtCiudadT.Text = string.Empty;
+            }catch(Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
     }
 }

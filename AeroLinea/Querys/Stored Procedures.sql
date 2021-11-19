@@ -64,6 +64,7 @@
     END
     $$
     
+       
     #---Creacion de procedimientos Tabla Aviones
     
     CALL UpIuAeroNavesCompañias(4,24,2000,"PRUEBA", 1, 0);
@@ -130,3 +131,87 @@
         END
     $$
     
+    DELIMITER $$
+	CREATE PROCEDURE UpSCiudades(IN PPais INT, IN PNombre VARCHAR(50))
+    BEGIN
+		SELECT CONCAT(b.IdPais, "-", b.Nombre) Pais , CONCAT(a.IdPais, "-", a.Nombre) Ciudad, a.IdCiudad, a.IdPais
+        FROM TblCiudades a
+        INNER JOIN TblPaises b ON a.IdPais = b.IdPais
+        WHERE b.IdPais = IFNULL(PPais, b.IdPais)
+        AND a.Nombre LIKE CONCAT("%",IFNULL(PNombre, a.Nombre),"%");
+    END	
+    $$
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpIUCiudades(IN PNombre VARCHAR(50), IN PIdPais INT, IN PIdCiudad INT)
+    BEGIN 
+		IF NOT EXISTS(SELECT NULL
+					  FROM TblCiudades
+                      WHERE IdCiudad = PidCiudad
+        )
+        THEN
+			INSERT INTO TblCiudades(Nombre, IdPais)
+            VALUES(PNombre, PIdPais);
+		ELSE
+			UPDATE TblCiudades SET Nombre = PNombre, IdPais = PIdPais
+            WHERE IdCiudad = PIdCiudad;
+		END IF;
+    END 
+    $$
+    
+    CALL UpSCiudades(null,null);
+    
+    SELECT * FROM TblCiudades
+    where idciudad = 0
+    
+    INSERT INTO TblCiudades(Nombre, IdPais)
+    VALUES("Guatemala",1),("Ciudad de México", 2)
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpDCiudades(IN PIdCiudad INT)
+    BEGIN
+		DELETE FROM TblCiudades
+        WHERE IdCiudad = PIdCiudad;
+    END
+    $$
+    
+    
+    # COntrol de Clientes
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpSClientes(IN PCriterio VARCHAR(40))
+    BEGIN
+		SELECT Nombres, Apellidos, DPI, Direccion, IdCliente
+        FROM TblClientes
+        WHERE (Nombres LIKE CONCAT("%",IFNULL(PCriterio, Nombres), "%")
+				OR Apellidos LIKE CONCAT("%",IFNULL(PCriterio, Nombres), "%")
+                OR DPI LIKE CONCAT("%",IFNULL(PCriterio, Nombres), "%")
+                OR Direccion LIKE CONCAT("%",IFNULL(PCriterio, Nombres), "%"));
+    END
+    $$
+    
+    CALL UpSClientes(NULL)
+    
+    INSERT INTO TblClientes(Nombres, Apellidos, DPI, Direccion)
+    SELECT "Ismar Ernesto ALEJANDRO", "Morales", "318834344", "Escuintla, escuintla Guatemala"
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpIUClientes(IN PNombres VARCHAR(35), IN PApellidos VARCHAR(40)
+						, IN PDPI VARCHAR(15), IN PDireccion VARCHAR(60), IN PIdCliente INT)
+	BEGIN 
+		IF NOT EXISTS(SELECT NULL
+					  FROM TblClientes 
+                      WHERE IdCliente = PIdCliente
+					 )
+		THEN
+			INSERT INTO TblClientes(Nombres, Apellidos, DPI, Direccion)
+            VALUES(PNombres, PApellidos, PDPI, PDireccion);
+		ELSE
+			UPDATE TblClientes SET Nombres = PNombres
+								   ,Apellidos = PApellidos
+                                   ,DPI = PDPI
+                                   ,Direccion = PDireccion
+			WHERE IdCliente = PIdCliente;
+        END IF;
+    END
+    $$

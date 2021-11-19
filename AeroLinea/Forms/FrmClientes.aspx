@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="FrmCiudades.aspx.cs" Inherits="AeroLinea.Forms.FrmPaises" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="FrmClientes.aspx.cs" Inherits="AeroLinea.Forms.FrmClientes" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -6,7 +6,7 @@
     <asp:UpdatePanel ID="PanelPrincipal" runat="server">
         <ContentTemplate>
             <section class="content-header">
-                <h1>Ciudades</h1>
+                <h1>Clientes</h1>
             </section>
             <section class="content">
                 <div class="container-fluid">
@@ -14,19 +14,13 @@
                     <asp:MultiView id="MultiView" runat="server">
                         <asp:View ID="ViewFiltro" runat="server">
                             <div class="row">
-                                <div class="col-md-1">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <asp:Label Text="Ciudad" runat="server" />
-                                        <asp:TextBox ID="TxtCiudadF" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                        <asp:Label Text="Criterio de Busqueda" runat="server" />
+                                        <asp:TextBox ID="TxtCriterio" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
-                                    <div class="form-group">
-                                        <asp:Label Text="País" runat="server" />
-                                        <asp:DropDownList ID="CboPaisesF" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-md-3"></div>
+                                <div class="col-md-2"></div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <br />
@@ -42,7 +36,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <br />
-                                        <asp:LinkButton ID="CmdAgregar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdAgregar_Click">Grabar Nuevo</asp:LinkButton>
+                                        <asp:LinkButton ID="CmdAgregar" runat="server" CssClass="btn btn-primary" Width="100%">Grabar Nuevo</asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
@@ -53,17 +47,18 @@
                                             <h3 class="card-title">Ciudades</h3>
                                         </div>
                                         <div class="card-body table-responsive">
-                                            <asp:GridView ID="GrdCiudades" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" OnSelectedIndexChanged="GrdCiudades_SelectedIndexChanged" OnRowDeleting="GrdCiudades_RowDeleting">
+                                            <asp:GridView ID="GrdClientes" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False">
                                                 <Columns>
-                                                    <asp:BoundField DataField="Pais" HeaderText="País" SortExpression="Pais" />
-                                                    <asp:BoundField DataField="Ciudad" HeaderText="Ciudad" SortExpression="Ciudad" />
+                                                    <asp:BoundField DataField="Nombres" HeaderText="Nombres" SortExpression="Nombres" />
+                                                    <asp:BoundField DataField="Apellidos" HeaderText="Apellidos" SortExpression="Apellidos" />
+                                                    <asp:BoundField DataField="DPI" HeaderText="DPI" SortExpression="DPI" />
+                                                    <asp:BoundField DataField="Direccion" HeaderText="Dirección" SortExpression="Direccion" />
                                                     <asp:TemplateField HeaderText="">
                                                         <EditItemTemplate>
                                                         </EditItemTemplate>
                                                         <ItemTemplate>
-                                                            <asp:HiddenField ID="HdnCiudad" runat="server" Value='<%# Eval("IdCiudad") %>' />
-                                                            <asp:HiddenField ID="HdnPais" runat="server" Value='<%# Eval("IdPais") %>' />
-                                                            <asp:LinkButton ID="CmdPais" runat="server" CommandName="Select" CssClass="btn btn-primary btn-xs"><li class="fas fa-edit"></li></asp:LinkButton>
+                                                            <asp:HiddenField ID="HdnCiudad" runat="server" Value='<%# Eval("IdCliente") %>' />
+                                                            <asp:LinkButton ID="CmdClientes" runat="server" CommandName="Select" CssClass="btn btn-primary btn-xs"><li class="fas fa-edit"></li></asp:LinkButton>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
@@ -111,12 +106,12 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <asp:LinkButton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdGrabarModificar_Click" ><li class="fa fa-save">Grabar</li></asp:LinkButton>
+                                                    <asp:LinkButton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%"><li class="fa fa-save">Grabar</li></asp:LinkButton>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <asp:LinkButton ID="CmdCancelar" runat="server" CssClass="btn btn-danger" Width="100%" OnClick="CmdCancelar_Click" >Cancelar</asp:LinkButton>
+                                                    <asp:LinkButton ID="CmdCancelar" runat="server" CssClass="btn btn-danger" Width="100%" >Cancelar</asp:LinkButton>
                                                 </div>
                                             </div>
                                         </div>
