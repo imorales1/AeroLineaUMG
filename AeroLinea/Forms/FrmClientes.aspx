@@ -36,7 +36,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <br />
-                                        <asp:LinkButton ID="CmdAgregar" runat="server" CssClass="btn btn-primary" Width="100%">Grabar Nuevo</asp:LinkButton>
+                                        <asp:LinkButton ID="CmdAgregar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdAgregar_Click">Grabar Nuevo</asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                             <h3 class="card-title">Ciudades</h3>
                                         </div>
                                         <div class="card-body table-responsive">
-                                            <asp:GridView ID="GrdClientes" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False">
+                                            <asp:GridView ID="GrdClientes" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" OnRowDeleting="GrdClientes_RowDeleting" OnSelectedIndexChanged="GrdClientes_SelectedIndexChanged">
                                                 <Columns>
                                                     <asp:BoundField DataField="Nombres" HeaderText="Nombres" SortExpression="Nombres" />
                                                     <asp:BoundField DataField="Apellidos" HeaderText="Apellidos" SortExpression="Apellidos" />
@@ -57,7 +57,7 @@
                                                         <EditItemTemplate>
                                                         </EditItemTemplate>
                                                         <ItemTemplate>
-                                                            <asp:HiddenField ID="HdnCiudad" runat="server" Value='<%# Eval("IdCliente") %>' />
+                                                            <asp:HiddenField ID="HdnCliente" runat="server" Value='<%# Eval("IdCliente") %>' />
                                                             <asp:LinkButton ID="CmdClientes" runat="server" CommandName="Select" CssClass="btn btn-primary btn-xs"><li class="fas fa-edit"></li></asp:LinkButton>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
@@ -88,16 +88,28 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-3">
+                                            <div class="col-md-2">
                                                 <div class=" form-group">
-                                                    <asp:Label Text="Nombre" runat="server" />
-                                                    <asp:TextBox ID="TxtCiudadT" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                    <asp:Label Text="Nombres" runat="server" />
+                                                    <asp:TextBox ID="TxtNombres" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class=" form-group">
-                                                    <asp:Label Text="País" runat="server" />
-                                                    <asp:DropDownList ID="CboPaisesT" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
+                                                    <asp:Label Text="Apellidos" runat="server" />
+                                                    <asp:TextBox ID="TxtApellidos" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class=" form-group">
+                                                    <asp:Label Text="DPI" runat="server" />
+                                                    <asp:TextBox ID="TxtDpi" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class=" form-group">
+                                                    <asp:Label Text="Dirección" runat="server" />
+                                                    <asp:TextBox ID="TxtDireccion" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>                          
@@ -106,12 +118,12 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <asp:LinkButton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%"><li class="fa fa-save">Grabar</li></asp:LinkButton>
+                                                    <asp:LinkButton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdGrabarModificar_Click"><li class="fa fa-save">Grabar</li></asp:LinkButton>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <asp:LinkButton ID="CmdCancelar" runat="server" CssClass="btn btn-danger" Width="100%" >Cancelar</asp:LinkButton>
+                                                    <asp:LinkButton ID="CmdCancelar" runat="server" CssClass="btn btn-danger" Width="100%" OnClick="CmdCancelar_Click" >Cancelar</asp:LinkButton>
                                                 </div>
                                             </div>
                                         </div>

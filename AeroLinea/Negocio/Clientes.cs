@@ -9,10 +9,10 @@ namespace AeroLinea.Negocio
 {
     public class Clientes
     {
-        public static int dCliente { get; set; }
+        public static int IdCliente { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }
-        public long MyProperty { get; set; }
+        public string DPI { get; set; }
         public string Direccion { get; set; }
         public string Criterio { get; set; }
 
@@ -22,6 +22,32 @@ namespace AeroLinea.Negocio
             {
                 ClientesDAL cl = new ClientesDAL();
                 return cl.Buscar(Criterio);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void GrabarModificar()
+        {
+            try
+            {
+                ClientesDAL cl = new ClientesDAL();
+                cl.GrabarModificar(Nombres, Apellidos, DPI, Direccion, IdCliente);
+            }catch(Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public void Eliminar()
+        {
+            try
+            {
+                ClientesDAL cl = new ClientesDAL();
+                cl.Eliminar(IdCliente);
             }
             catch (Exception)
             {

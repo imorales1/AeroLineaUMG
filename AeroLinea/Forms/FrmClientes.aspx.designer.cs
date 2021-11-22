@@ -114,22 +114,40 @@ namespace AeroLinea.Forms
         protected global::System.Web.UI.WebControls.View ViewTecleo;
 
         /// <summary>
-        /// Control TxtCiudadT.
+        /// Control TxtNombres.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtCiudadT;
+        protected global::System.Web.UI.WebControls.TextBox TxtNombres;
 
         /// <summary>
-        /// Control CboPaisesT.
+        /// Control TxtApellidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CboPaisesT;
+        protected global::System.Web.UI.WebControls.TextBox TxtApellidos;
+
+        /// <summary>
+        /// Control TxtDpi.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtDpi;
+
+        /// <summary>
+        /// Control TxtDireccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtDireccion;
 
         /// <summary>
         /// Control CmdGrabarModificar.

@@ -7,7 +7,7 @@ using MySql.Data.MySqlClient;
 
 namespace AeroLinea.Db
 {
-    public class ClientesDAL:CadenaDB
+    public class ClientesDAL : CadenaDB
     {
         public DataTable Buscar(string Criterio)
         {
@@ -35,7 +35,7 @@ namespace AeroLinea.Db
             return tbl;
         }
 
-        public void GrabarModificar(string Nombre, string Apellido, string DPI, string Direccion, int IdCliente)
+        public void GrabarModificar(string Nombre, string Apellido, string DPI, string Direccion, int? IdCliente)
         {
             using (MySqlConnection cn = new MySqlConnection(cadena))
             {
@@ -45,11 +45,33 @@ namespace AeroLinea.Db
                     using (MySqlCommand cmd = new MySqlCommand("UpIUClientes", cn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("PCriterio", Nombre == "" ? null : Nombre);
-                        cmd.Parameters.AddWithValue("PCriterio", Apellido == "" ? null : Apellido);
-                        cmd.Parameters.AddWithValue("PCriterio", DPI == "" ? null : DPI);
-                        cmd.Parameters.AddWithValue("PCriterio", Direccion == "" ? null : Direccion);
-                        cmd.Parameters.AddWithValue("PCriterio", IdCliente);
+                        cmd.Parameters.AddWithValue("PNombres", Nombre == "" ? null : Nombre);
+                        cmd.Parameters.AddWithValue("PApellidos", Apellido == "" ? null : Apellido);
+                        cmd.Parameters.AddWithValue("PDPI", DPI == "" ? null : DPI);
+                        cmd.Parameters.AddWithValue("PDireccion", Direccion == "" ? null : Direccion);
+                        cmd.Parameters.AddWithValue("PIdCliente", IdCliente);
+                        cmd.ExecuteNonQuery();
+                    }
+                    cn.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+        public void Eliminar(int Id)
+        {
+            using (MySqlConnection cn = new MySqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("UpDClientes", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PIdCliente", Id);
                         cmd.ExecuteNonQuery();
                     }
                     cn.Close();
