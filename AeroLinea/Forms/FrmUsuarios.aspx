@@ -48,7 +48,7 @@
                                             <h3 class="card-title">Compañías</h3>
                                         </div>
                                         <div class="card-body table-responsive">
-                                            <asp:GridView ID="GrdUsuarios" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" >
+                                            <asp:GridView ID="GrdUsuarios" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" OnRowDeleting="GrdUsuarios_RowDeleting" OnSelectedIndexChanged="GrdUsuarios_SelectedIndexChanged" >
                                                 <Columns>
                                                     <asp:BoundField DataField="Usuario" HeaderText="Usuario" SortExpression="Usuario" />
                                                     <asp:BoundField DataField="Nombres" HeaderText="Nombre" SortExpression="Nombre" />
@@ -58,7 +58,7 @@
                                                         <EditItemTemplate>
                                                         </EditItemTemplate>
                                                         <ItemTemplate>
-                                                            <asp:HiddenField ID="HdnUsuario" runat="server" Value='<%# Eval("IdUsuario") %>' />
+                                                            <asp:HiddenField ID="HdnIdUsuario" runat="server" Value='<%# Eval("IdUsuario") %>' />
                                                             <asp:LinkButton ID="CmdUsuario" runat="server" CommandName="Select" CssClass="btn btn-primary btn-xs"><li class="fas fa-edit"></li></asp:LinkButton>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
@@ -133,7 +133,8 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <asp:Panel ID="PnlContraseñas" runat="server">
+                                                    <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <asp:Label Text="Contraseña" runat="server" />
@@ -147,6 +148,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                </asp:Panel>
                                             </div>
                                             <div class="card-footer">
                                                 <div class="row">

@@ -23,7 +23,7 @@ namespace AeroLinea.Negocio
             try
             {
                 UsuariosDAL usuario = new UsuariosDAL();
-                usuario.GuardarImagen(Fotografia, Nombres, Apellidos, Usuario, Contraseña, IdUsuario);
+                usuario.GuardarImagen(Fotografia, Nombres, Apellidos, Usuario, Contraseña, IdRol, IdUsuario);
             }
             catch (Exception)
             {
@@ -38,6 +38,19 @@ namespace AeroLinea.Negocio
                 UsuariosDAL usuario = new UsuariosDAL();
                 
                 return usuario.Buscar(CriterioBusqueda, IdUsuario);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataRow BuscarUsuario()
+        {
+            try
+            {
+                UsuariosDAL us = new UsuariosDAL();
+                return us.BuscarDatosEmpleado(IdUsuario).Rows[0];
             }
             catch (Exception)
             {

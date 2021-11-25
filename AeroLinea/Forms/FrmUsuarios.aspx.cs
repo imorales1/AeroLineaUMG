@@ -12,6 +12,7 @@ namespace AeroLinea.Forms
 {
     public partial class FrmUsuarios : System.Web.UI.Page
     {
+        private static ModosDeTecleo Modo;
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -21,6 +22,7 @@ namespace AeroLinea.Forms
                     MultiView.SetActiveView(ViewFiltro);
                     Helper.Generica cbo = new Helper.Generica();
                     cbo.LLenarCombos(ref CboRoles);
+                    Modo = ModosDeTecleo.Grabar;
                 }
             }catch(Exception ex)
             {
@@ -54,7 +56,15 @@ namespace AeroLinea.Forms
                 us.IdRol = Convert.ToInt16(CboRoles.SelectedValue);
                 us.Grabar();
 
-                Helper.Generica.Mensaje(this, "Usuario Grabado con éxito");
+                if(Modo == ModosDeTecleo.Grabar)
+                {
+                    Helper.Generica.Mensaje(this, "Usuario Grabado con éxito");
+                }
+                else
+                {
+                    Helper.Generica.Mensaje(this, "Usuario Modificado con éxito");
+                }
+                
             }
             catch(Exception ex)
             {
@@ -91,8 +101,36 @@ namespace AeroLinea.Forms
                 //byte[] obj = (byte[])row["Fotografia"];
                 //Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(obj);
                 MultiView.SetActiveView(ViewFiltro);
-                
+                PnlContraseñas.Visible = true;
 
+            }
+            catch (Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
+
+        protected void GrdUsuarios_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Usuarios.IdUsuario = Convert.ToInt32((((HiddenField)GrdUsuarios.SelectedRow.Cells[4].FindControl("HdnIdUsuario")).Value));
+                Modo = ModosDeTecleo.Modificar;
+                PnlContraseñas.Visible = false;
+                ExecuteQuery();
+                MultiView.SetActiveView(ViewTecleo);
+            }
+            catch (Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
+
+        protected void GrdUsuarios_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                
             }
             catch (Exception ex)
             {
@@ -134,6 +172,33 @@ namespace AeroLinea.Forms
             {
                 Helper.Generica.Mensaje(this, ex.Message);
             }
+        }
+
+        private void ExecuteQuery()
+        {
+            try
+            {
+                DataRow row;
+                Usuarios us = new Usuarios();
+                row = us.BuscarUsuario();
+
+                TxtUsuario.Text = row["Usuario"].ToString();
+                TxtNombres.Text = row["Nombres"].ToString();
+                TxtApellidos.Text = row["Apellidos"].ToString();
+                CboRoles.SelectedValue = row["IdRol"].ToString().Equals("")? "0" : row["IdRol"].ToString();
+                byte[] obj = (byte[])row["Fotografia"];
+                Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String(obj);
+            }
+            catch (Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
+
+        enum ModosDeTecleo
+        {
+            Grabar = 1,
+            Modificar = 2
         }
     }
 }
