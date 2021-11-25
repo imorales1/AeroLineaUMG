@@ -58,5 +58,30 @@ namespace AeroLinea.Db
             }
             return tbl;
         }
+
+        public DataTable ObtenerRoles()
+        {
+            DataTable tbl = new DataTable();
+            using (MySqlConnection cn = new MySqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("UpSRolesCombo", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        MySqlDataReader rd = cmd.ExecuteReader();
+                        tbl.Load(rd);
+                    }
+                    cn.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return tbl;
+        }
     }
 }

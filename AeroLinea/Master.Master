@@ -30,6 +30,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="Content/AdminLTE-master/plugins/summernote/summernote-bs4.min.css">
     <link href="Content/toastr.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
     <form id="form1" runat="server">
@@ -121,10 +122,10 @@
                                             <asp:LinkButton href="/Forms/FrmAviones.aspx" ID="BtnMenu3" runat="server" Text=" Aero Naves" CssClass="nav-link fab fa-avianex"></asp:LinkButton>
                                         </li>
                                         <li class="nav-item">
-                                            <asp:LinkButton href="/Forms/FrmCiudades.aspx" ID="LinkButton2" runat="server" Text="Ciudades" CssClass="nav-link fab fa-avianex"></asp:LinkButton>
+                                            <asp:LinkButton href="/Forms/FrmCiudades.aspx" ID="LinkButton2" runat="server" Text=" Ciudades" CssClass="nav-link fas fa-city"></asp:LinkButton>
                                         </li>
                                         <li class="nav-item">
-                                            <asp:LinkButton href="/Forms/FrmClientes.aspx" ID="LinkButton3" runat="server" Text="Clientes" CssClass="nav-link fab fa-avianex"></asp:LinkButton>
+                                            <asp:LinkButton href="/Forms/FrmClientes.aspx" ID="LinkButton3" runat="server" Text=" Clientes" CssClass="nav-link fas fa-users"></asp:LinkButton>
                                         </li>
 <%--                                        <li class="nav-item">
                                             <a href="pages/mailbox/read-mail.html" class="nav-link">
@@ -227,6 +228,9 @@
             <script src='<%= ResolveClientUrl("~/Scripts/bootbox.locales.min.js") %>'></script>
             <script src='<%= ResolveClientUrl("~/Scripts/bootbox.min.js") %>'></script>
             <script src='<%= ResolveClientUrl("Scripts/toastr.min.js") %>'></script> 
+            <script src='<%= ResolveClientUrl("https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js") %>'></script> 
+            <script src='<%= ResolveClientUrl("https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js") %>'></script>
+
             <script type="text/javascript">
                 $(document).ready(function () {
 

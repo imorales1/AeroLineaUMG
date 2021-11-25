@@ -8,6 +8,8 @@ using System.IO;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using AeroLinea.Db;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace AeroLinea.Helper
 {
@@ -149,6 +151,9 @@ namespace AeroLinea.Helper
                     case "CboPaisesT":
                         table = combo.ObtenerPaises();
                         break;
+                    case "CboRoles":
+                        table = combo.ObtenerRoles();
+                        break;
                     default:
                         table = null;
                         break;
@@ -158,6 +163,24 @@ namespace AeroLinea.Helper
                 control.DataTextField = "Descripcion";
                 control.DataValueField = "ID";
                 control.DataBind();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public static string EncriptarContraseña(string pass)
+        {
+            try
+            {
+                SHA256 cifrar = SHA256Managed.Create();
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                byte[] stream = null;
+                StringBuilder sb = new StringBuilder();
+                stream = cifrar.ComputeHash(encoding.GetBytes(pass));
+                for (int i = 0; i < stream.Length; i++) sb.AppendFormat("{0:x2}", stream[i]);
+                return sb.ToString();
             }
             catch (Exception)
             {
