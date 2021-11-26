@@ -34,7 +34,20 @@ namespace AeroLinea.Forms
 
         protected void CmdExportar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if(GrdAeroNaves.Rows.Count > 0)
+                {
+                    Helper.Generica.ExportExcel(GrdAeroNaves, Response);
+                }
+                else
+                {
+                    Helper.Generica.Mensaje(this, "No hay datos para Exportar");
+                }
+            }catch(Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
         }
 
         protected void CmdAgregar_Click(object sender, EventArgs e)

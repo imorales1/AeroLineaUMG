@@ -5,11 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AeroLinea.Helper;
+using AeroLinea.Negocio;
 
 namespace AeroLinea.Forms
 {
     public partial class FrmVuelosProgramados : System.Web.UI.Page
     {
+        private static ModosDeTecleo Modo { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -17,6 +19,7 @@ namespace AeroLinea.Forms
                 if (!Page.IsPostBack)
                 {
                     MultiView.SetActiveView(ViewFiltro);
+                    Modo = ModosDeTecleo.Grabar;
                 }
             }
             catch(Exception ex)
@@ -27,12 +30,25 @@ namespace AeroLinea.Forms
 
         protected void CmdBuscar_Click(object sender, EventArgs e)
         {
-
+            Buscar();
         }
 
         protected void CmdExportar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                if(GrdVuelos.Rows.Count > 0)
+                {
+                    Generica.ExportExcel(GrdVuelos, Response);
+                }
+                else
+                {
+                    Generica.Mensaje(this, "No hay datos para exportar");
+                }
+            }catch(Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
         }
 
         protected void CmdAgregar_Click(object sender, EventArgs e)
@@ -48,7 +64,32 @@ namespace AeroLinea.Forms
 
         protected void CmdGrabarModificar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Vuelos vuelo = new Vuelos();
+                vuelo.Fecha = TxtFecha.Text.Equals("") ? Convert.ToDateTime("01/01/1999") : Convert.ToDateTime(TxtFecha.Text);
+                vuelo.IdAvion = Convert.ToInt32(CboAviones.SelectedValue);
+                vuelo.COrigen = Convert.ToInt32(CboCiudadesO.SelectedValue);
+                vuelo.CDestino = Convert.ToInt32(CboCiudadesD.SelectedValue);
+                vuelo.GrabarModificar();
 
+                if(Modo == ModosDeTecleo.Grabar)
+                {
+                    Generica.Mensaje(this, "Registro grabado con éxito");
+
+                }
+                else
+                {
+                    Generica.Mensaje(this, "Registro Modificado con éxito");
+                    MultiView.SetActiveView(ViewFiltro);
+                    Modo = ModosDeTecleo.Grabar;
+                    Vuelos.IdVuelo = 0;
+                }
+            }
+            catch(Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
         }
 
         protected void CmdCancelar_Click(object sender, EventArgs e)
@@ -62,14 +103,36 @@ namespace AeroLinea.Forms
             }
         }
 
-        protected void GrdCiudades_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        protected void GrdVuelos_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        protected void GrdCiudades_SelectedIndexChanged(object sender, EventArgs e)
+        protected void GrdVuelos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
 
+        }
+
+        private void Buscar()
+        {
+            try
+            {
+                Vuelos vuelo = new Vuelos();
+                Vuelos.IdVuelo = TxtIdVuelo.Text.Equals("") ? 0 : Convert.ToInt32(TxtIdVuelo.Text);
+                vuelo.Fecha = TxtFecha.Text.Equals("") ? Convert.ToDateTime("01/01/1999") : Convert.ToDateTime(TxtFecha.Text);
+                GrdVuelos.DataSource = vuelo.Buscar();
+                GrdVuelos.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
+        }
+
+        enum ModosDeTecleo
+        {
+            Grabar = 1,
+            Modificar = 2
         }
     }
 }

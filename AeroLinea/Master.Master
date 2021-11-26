@@ -57,7 +57,7 @@
                         <li class="nav-item">
                             <!-- CONTROLES EN ENCABEZADO -->
                             ´<%--<asp:LinkButton ID="CmdLogin" runat="server" CssClass="nav-link"><li class="fa fa-user"><p>Iniciar Sesión</p></li></asp:LinkButton>--%>
-                            <asp:LinkButton href="/Forms/FrmLogin.aspx" ID="CmdLogin" runat="server" CssClass="btn btn-block btn-light btn-flat fa fa-user"></asp:LinkButton>
+                            <asp:LinkButton href="Default.aspx" ID="CmdLogin" runat="server" CssClass="btn btn-block btn-light btn-flat fa fa-user"></asp:LinkButton>
                             <div class="navbar-search-block"></div>
                         <li>
                         </li>
@@ -79,7 +79,7 @@
                 <!-- Main Sidebar Container -->
                 <aside class="main-sidebar sidebar-dark-primary elevation-4">
                     <!-- Brand Logo -->
-                    <a href="/Forms/FrmLogin.aspx" class="brand-link">
+                    <a href="~/Aerolinea/Default.aspx" class="brand-link">
                         <img src="../Content/AdminLTE-master/dist/img/LogoAv.jpg" alt="AeroLinea" class="brand-image img-circle elevation-3" style="opacity: .8">
                         <span class="brand-text font-weight-light"><b>Aerolinea GT</b></span>
                     </a>
@@ -112,6 +112,12 @@
                                         <p>Usuarios</p>
                                     </a>
                                     <%--<asp:LinkButton href="" ID="BtnUsuarios" runat="server" Text=" Usuarios" CssClass="nav-link fas fa-users" ></asp:LinkButton>--%> 
+                                </li>
+                                <li class="nav-item"> 
+                                    <a href="/Forms/FrmVuelosProgramados.aspx" class="nav-link"> 
+                                        <i class="nav-icon fas fa-plane"></i>
+                                        <p>Programación de Vuelos</p>
+                                    </a>
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link">
@@ -146,10 +152,10 @@
                                     </a>
                                     <ul class="nav nav-treeview"> 
                                         <li class="nav-item"> 
-                                            <asp:LinkButton href="" ID="BtnConsulta" runat="server" Text=" Reporte Quejas" CssClass="nav-link far fa-list-alt"></asp:LinkButton>
+                                            <asp:LinkButton href="" ID="BtnConsulta" runat="server" Text=" Boletos" CssClass="nav-link fas fa-ticket-alt"></asp:LinkButton>
                                         </li>
                                         <li class="nav-item"> 
-                                            <asp:LinkButton href="" ID="LinkButton1" runat="server" Text=" Reporte Quejas Por Fecha" CssClass="nav-link fas fa-calendar-alt"></asp:LinkButton>
+                                            <asp:LinkButton href="" ID="LinkButton1" runat="server" Text=" Boletos Vendidos" CssClass="nav-link fas fa-ticket-alt"></asp:LinkButton>
                                         </li>
                                     </ul>
                                 </li>

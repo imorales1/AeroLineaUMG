@@ -166,5 +166,24 @@ namespace AeroLinea.Forms
                 Helper.Generica.Mensaje(this, ex.Message);
             }
         }
+
+        protected void CmdExportar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (GrdCiudades.Rows.Count > 0)
+                {
+                    Helper.Generica.ExportExcel(GrdCiudades, Response);
+                }
+                else
+                {
+                    Helper.Generica.Mensaje(this, "No hay datos para Exportar");
+                }
+            }
+            catch (Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
     }
 }

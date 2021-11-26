@@ -53,7 +53,7 @@
                                             <h3 class="card-title">Ciudades</h3>
                                         </div>
                                         <div class="card-body table-responsive">
-                                            <asp:GridView ID="GrdCiudades" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" OnSelectedIndexChanged="GrdCiudades_SelectedIndexChanged" OnRowDeleting="GrdCiudades_RowDeleting">
+                                            <asp:GridView ID="GrdVuelos" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" OnSelectedIndexChanged="GrdVuelos_SelectedIndexChanged" OnRowDeleting="GrdVuelos_RowDeleting">
                                                 <Columns>
                                                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
                                                     <asp:BoundField DataField="Origen" HeaderText="Origen" SortExpression="Origen" />
@@ -145,6 +145,9 @@
                 </div>
             </section>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="CmdExportar" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContenScriptBody" runat="server">

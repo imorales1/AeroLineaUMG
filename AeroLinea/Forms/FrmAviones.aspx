@@ -157,6 +157,9 @@
                 </div>
             </section>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="CmdExportar" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContenScriptBody" runat="server">

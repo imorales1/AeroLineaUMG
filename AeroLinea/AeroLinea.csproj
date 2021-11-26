@@ -2559,6 +2559,7 @@
     <Compile Include="Db\CombosDal.cs" />
     <Compile Include="Db\CompañiasDAL.cs" />
     <Compile Include="Db\UsuariosDAL.cs" />
+    <Compile Include="Db\VuelosDAL.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2631,6 +2632,7 @@
     <Compile Include="Negocio\Clientes.cs" />
     <Compile Include="Negocio\Compañias.cs" />
     <Compile Include="Negocio\Usuarios.cs" />
+    <Compile Include="Negocio\Vuelos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

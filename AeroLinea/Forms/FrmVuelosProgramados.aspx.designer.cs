@@ -96,13 +96,13 @@ namespace AeroLinea.Forms
         protected global::System.Web.UI.WebControls.LinkButton CmdAgregar;
 
         /// <summary>
-        /// Control GrdCiudades.
+        /// Control GrdVuelos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GrdCiudades;
+        protected global::System.Web.UI.WebControls.GridView GrdVuelos;
 
         /// <summary>
         /// Control LblRegistros.
