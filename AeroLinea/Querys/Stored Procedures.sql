@@ -64,7 +64,6 @@
     END
     $$
     
-       
     #---Creacion de procedimientos Tabla Aviones
     
     CALL UpIuAeroNavesCompañias(4,24,2000,"PRUEBA", 1, 0);
@@ -215,3 +214,152 @@
         END IF;
     END
     $$
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpDClientes(IN PIdCliente INT)
+    BEGIN 
+		DELETE FROM TblClientes
+        WHERE IdCliente = PIdCliente;
+    END;
+    $$
+     
+     
+	## CONTROL DE ROLES DE USUARIO
+    
+    select * from TblSecRoles
+    insert into TblSecRoles(Nombre, Iniciales, Descripcion)
+    VALUES("Administrador", "ADM", "Usuario encargado de la administración del sistema, creación, modificación y eliminar usuarios")
+    
+     insert into TblSecRoles(Nombre, Iniciales, Descripcion)
+    VALUES("Operador", "OPR", "Usuario encargado de llevar el control de viajes y de clientes")
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpSRolesCombo()
+    BEGIN
+		SELECT 0 ID, "Ninguno" Descripcion
+        UNION ALL
+		SELECT IdRol ID, CONCAT(IdRol,"-",Nombre) Descripcion
+        FROM TblSecRoles;
+    END
+    $$
+    call UpSRolesCombo();
+    
+    ### CONTROL DE USUARIOS
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpIuUsuarios(IN PNombres VARCHAR(35), IN PApellidos VARCHAR(40), IN PFoto longblob
+								 , IN PUsuario VARCHAR(30), IN PContraseña VARCHAR(100), IN PIdRol INT, IN PIdUsuario INT)
+    BEGIN
+		IF NOT EXISTS(SELECT NULL
+					  FROM TblSecUsuarios
+                      WHERE IdUsuario = PIdUsuario)
+		THEN
+			INSERT INTO TblSecUsuarios(Nombres, Apellidos, Fotografia, Usuario, Contraseña, IdRol)
+			VALUES(PNombres, PApellidos, PFoto, PUsuario, PContraseña, PIdRol);
+		ELSE
+			UPDATE TblSecUsuarios SET Nombes = PNombres, Apellidos = PApellidos, Fotografia = PFoto, Usuario = PUsuario
+										, Contraseña = PContraseña, IdRol = PIdRol
+			WHERE IdUsuario = PIdUsuario;
+		END IF;
+    END;
+    $$
+    
+    SELECT * FROM TblSecUsuarios
+    select * from TblSecRoles
+    DELIMITER $$
+    CREATE PROCEDURE UpsUsuarios(IN PCriterio VARCHAR(40), IN PId INT)
+    BEGIN
+		SELECT a.Usuario, a.Nombres, a.Apellidos, CONCAT(b.IdRol, "-", b.Nombre) Rol, a.IdUsuario
+        FROM TblSecUsuarios a
+        LEFT JOIN TblSecRoles b ON a.IdRol = b.IdRol
+        WHERE (Nombres LIKE CONCAT("%", IFNULL(PCriterio, Nombres), "%")
+			   OR Apellidos LIKE CONCAT("%", IFNULL(PCriterio, Apellidos), "%")
+               OR Usuario LIKE CONCAT("%", IFNULL(PCriterio, Usuario), "%")
+               )
+        AND IdUsuario = IFNULL(PId, IdUsuario); 
+    END
+    $$
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpsUsuarioDatos(IN PId INT)
+    BEGIN
+		SELECT a.Usuario, a.Nombres, a.Apellidos, a.IdRol, a.Fotografia
+        FROM TblSecUsuarios a
+        WHERE IdUsuario = PId; 
+    END
+    $$
+    
+    
+    call UpsUsuarioDatos(1);
+    
+    ### Conctrol de vuelos
+    
+    select * from tblvuelos;
+    select * from TblOrigenDestino
+    SELECT * FROM TblAviones
+    select * from tBLCIUDADES
+    
+    call UpIUVuelos("2021/11/28", 1, 1, 2, 6);
+    
+    DELIMITER $$
+	CREATE PROCEDURE UpIUVuelos(IN PFecha DATETIME, IN PIdAvion INT, IN PCiudadOrigen INT, PCiudadDestino INT, IN PIdVuelo INT)
+    BEGIN
+		IF NOT EXISTS(SELECT NULL
+					 FROM TblVuelos
+                     WHERE IdVuelo = PIdVuelo
+					  )
+		THEN
+			INSERT INTO TblVuelos(Fecha, IdAvion)
+			VALUES(PFecha, PIdAvion);
+            
+            # OBTENDREMOS EL VUELO INSERTADO
+            SET @NVuelo = (SELECT MAX(IdVuelo) FROM TblVuelos);
+            
+            # CREAREMOS EL REGISTRO DEL ORIGEN
+            INSERT INTO TblOrigenDestino(IdCiudad, IdVuelo, Tipo)
+            VALUES(PCiudadOrigen,@NVuelo, 1);
+            
+            #Registramos el Destino
+            INSERT INTO TblOrigenDestino(IdCiudad, IdVuelo, Tipo)
+            VALUES(PCiudadDestino,@NVuelo, 2);
+		ELSE
+			UPDATE TblVuelos SET Fecha = PFecha, IdAvion = PIdAvion
+            WHERE IdVuelo = PIdVuelo;
+            
+            #Modificamos el origen
+            UPDATE TblOrigenDestino SET IdCiudad = PCiudadOrigen
+            WHERE IdVuelo = PIdVuelo 
+            AND Tipo = 1;
+            
+            #Modificacion del destino
+            UPDATE TblOrigenDestino SET IdCiudad = PCiudadDestino
+            WHERE IdVuelo = PIdVuelo 
+            AND Tipo = 2;
+		END IF;
+    END
+    $$
+    
+    select * FROM TblOrigenDestino
+    SELECT * FROM TblCiudades
+    DELIMITER $$
+	CREATE PROCEDURE UpSVuelos(IN PIdVuelo INT, IN PFecha DATETIME)
+    BEGIN
+		SELECT a.IdVuelo, a.Fecha, d.Nombre Origen, e.Nombre Destino, f.Modelo, f.Pasajeros Boletos, g.Nombre Compañia
+        FROM TblVuelos a
+        INNER JOIN (SELECT a.IdCiudad Origen, a.IdVuelo
+					FROM TblOrigenDestino a
+                    WHERE a.Tipo = 1) b ON a.IdVuelo = b.IdVuelo
+        INNER JOIN (SELECT a.IdCiudad Destino, a.IdVuelo
+					FROM TblOrigenDestino a
+                    WHERE a.Tipo = 2) c ON a.IdVuelo = c.IdVuelo
+        INNER JOIN TblCiudades d ON b.Origen = d.IdCiudad
+        INNER JOIN TblCiudades e ON c.Destino = e.IdCiudad 
+        INNER JOIN TblAviones f ON a.IdAvion = f.IdAvion
+        INNER JOIN TblCompañias g ON f.IdCompañia = g.IdCompañia
+        WHERE a.IdVuelo = IFNULL(PIdVuelo, a.IdVuelo)
+        AND a.Fecha = IFNULL(PFecha, a.Fecha);
+    END
+    $$
+    
+    call UpSVuelos(null,null)
+    

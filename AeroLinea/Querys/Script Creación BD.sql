@@ -55,6 +55,10 @@
 		FOREIGN KEY(IdVuelo) REFERENCES TblVuelos(IdVuelo)
     )
     
+    ALTER TABLE `dbaerolinea`.`tblorigendestino` 
+ADD COLUMN `Tipo` TINYINT NULL AFTER `IdVuelo`;
+
+
     
     CREATE TABLE TblClientes(
 		IdCliente INT AUTO_INCREMENT,
@@ -80,4 +84,27 @@
     VALUES('AeroGuate', '3 Calle 4 avenida Zona 10 Edificio Norte', 'tuvuelo@aeroguate.com.gt', '78201456')
     
     
+    CREATE TABLE TblSecRoles(
+		IdRol INT AUTO_INCREMENT,
+        Nombre VARCHAR(30),
+        Iniciales CHAR(3),
+        Descripcion VARCHAR(100),
+		PRIMARY KEY(IdRol)
+    )
     
+    CREATE TABLE TblSecUsuarios(
+		IdUsuario INT AUTO_INCREMENT,
+        Nombres VARCHAR(35),
+        Apellidos VARCHAR(35),
+        Fotografia LONGBLOB,
+        IdRol INT,
+        PRIMARY KEY(IdUsuario),
+        FOREIGN KEY(IdRol) REFERENCES TblSecRoles(IdRol)
+    )
+    
+    ALTER TABLE `dbaerolinea`.`tblsecusuarios` 
+	ADD COLUMN `Usuario` VARCHAR(30) NULL AFTER `Fotografia`,
+	ADD COLUMN `Contraseña` INT NULL AFTER `Usuario`;
+	
+    ALTER TABLE `dbaerolinea`.`tblsecroles` 
+CHANGE COLUMN `Descripcion` `Descripcion` VARCHAR(300) NULL DEFAULT NULL ;
