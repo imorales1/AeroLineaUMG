@@ -40,5 +40,18 @@ namespace AeroLinea.Negocio
                 throw;
             }
         }
+
+        public void Eliminar()
+        {
+            try
+            {
+                VuelosDAL vuelos = new VuelosDAL();
+                vuelos.Eliminar(IdVuelo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

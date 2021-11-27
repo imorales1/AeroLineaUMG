@@ -83,5 +83,56 @@ namespace AeroLinea.Db
 
             return tbl;
         }
+
+        public DataTable ObtenerAviones()
+        {
+            DataTable tbl = new DataTable();
+            using (MySqlConnection cn = new MySqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("UpSAvionesCombo", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        MySqlDataReader rd = cmd.ExecuteReader();
+                        tbl.Load(rd);
+                    }
+                    cn.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return tbl;
+        }
+
+        public DataTable ObtenerCiduades(int? Parametro)
+        {
+            DataTable tbl = new DataTable();
+            using (MySqlConnection cn = new MySqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("UpSCiudadesCombo", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PIdCiudad", Parametro == 0? null : Parametro);
+                        MySqlDataReader rd = cmd.ExecuteReader();
+                        tbl.Load(rd);
+                    }
+                    cn.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return tbl;
+        }
     }
 }

@@ -134,7 +134,7 @@ namespace AeroLinea.Helper
             }
         }
 
-        public void LLenarCombos(ref DropDownList control)
+        public void LLenarCombos(ref DropDownList control, int parametro = 0)
         {
             try
             {
@@ -153,6 +153,13 @@ namespace AeroLinea.Helper
                         break;
                     case "CboRoles":
                         table = combo.ObtenerRoles();
+                        break;
+                    case "CboAviones":
+                        table = combo.ObtenerAviones();
+                        break;
+                    case "CboCiudadesO":
+                    case "CboCiudadesD":
+                        table = combo.ObtenerCiduades(parametro);
                         break;
                     default:
                         table = null;

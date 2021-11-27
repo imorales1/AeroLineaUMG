@@ -55,7 +55,7 @@
                                         <div class="card-body table-responsive">
                                             <asp:GridView ID="GrdVuelos" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" OnSelectedIndexChanged="GrdVuelos_SelectedIndexChanged" OnRowDeleting="GrdVuelos_RowDeleting">
                                                 <Columns>
-                                                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" />
+                                                    <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" DataFormatString="{0:d}" />
                                                     <asp:BoundField DataField="Origen" HeaderText="Origen" SortExpression="Origen" />
                                                     <asp:BoundField DataField="Destino" HeaderText="Destino" SortExpression="Destino" />
                                                     <asp:BoundField DataField="Modelo" HeaderText="Modelo" SortExpression="Modelo" />
@@ -65,7 +65,10 @@
                                                         <EditItemTemplate>
                                                         </EditItemTemplate>
                                                         <ItemTemplate>
-                                                            <asp:HiddenField ID="HdnCiudad" runat="server" Value='<%# Eval("IdVuelo") %>' />
+                                                            <asp:HiddenField ID="HdnVuelo" runat="server" Value='<%# Eval("IdVuelo") %>' />
+                                                            <asp:HiddenField ID="HdnAvion" runat="server" Value='<%# Eval("IdAvion") %>' />
+                                                            <asp:HiddenField ID="HdnOrigen" runat="server" Value='<%# Eval("IdOrigen") %>' />
+                                                            <asp:HiddenField ID="HdnDestino" runat="server" Value='<%# Eval("IdDestino") %>' />
                                                             <asp:LinkButton ID="CmdVuelo" runat="server" CommandName="Select" CssClass="btn btn-primary btn-xs"><li class="fas fa-edit"></li></asp:LinkButton>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
@@ -111,7 +114,7 @@
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Ciudad Origen" runat="server" />
-                                                    <asp:DropDownList ID="CboCiudadesO" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
+                                                    <asp:DropDownList ID="CboCiudadesO" runat="server" CssClass="form-control select2" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="CboCiudadesO_SelectedIndexChanged"></asp:DropDownList>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">

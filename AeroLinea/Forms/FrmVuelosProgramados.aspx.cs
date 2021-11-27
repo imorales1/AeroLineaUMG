@@ -20,6 +20,9 @@ namespace AeroLinea.Forms
                 {
                     MultiView.SetActiveView(ViewFiltro);
                     Modo = ModosDeTecleo.Grabar;
+                    Generica combos = new Generica();
+                    combos.LLenarCombos(ref CboAviones);
+                    combos.LLenarCombos(ref CboCiudadesO);
                 }
             }
             catch(Exception ex)
@@ -67,7 +70,7 @@ namespace AeroLinea.Forms
             try
             {
                 Vuelos vuelo = new Vuelos();
-                vuelo.Fecha = TxtFecha.Text.Equals("") ? Convert.ToDateTime("01/01/1999") : Convert.ToDateTime(TxtFecha.Text);
+                vuelo.Fecha = TxtFechaT.Text.Equals("") ? Convert.ToDateTime("01/01/1999") : Convert.ToDateTime(TxtFechaT.Text);
                 vuelo.IdAvion = Convert.ToInt32(CboAviones.SelectedValue);
                 vuelo.COrigen = Convert.ToInt32(CboCiudadesO.SelectedValue);
                 vuelo.CDestino = Convert.ToInt32(CboCiudadesD.SelectedValue);
@@ -76,14 +79,15 @@ namespace AeroLinea.Forms
                 if(Modo == ModosDeTecleo.Grabar)
                 {
                     Generica.Mensaje(this, "Registro grabado con éxito");
-
+                    LimpiarCampos();
                 }
                 else
                 {
                     Generica.Mensaje(this, "Registro Modificado con éxito");
-                    MultiView.SetActiveView(ViewFiltro);
                     Modo = ModosDeTecleo.Grabar;
                     Vuelos.IdVuelo = 0;
+                    LimpiarCampos();
+                    MultiView.SetActiveView(ViewFiltro);
                 }
             }
             catch(Exception ex)
@@ -105,12 +109,48 @@ namespace AeroLinea.Forms
 
         protected void GrdVuelos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                Vuelos.IdVuelo = Convert.ToInt32((((HiddenField)GrdVuelos.SelectedRow.Cells[6].FindControl("HdnVuelo")).Value));
+                TxtFechaT.Text = GrdVuelos.SelectedRow.Cells[0].Text;
+                CboAviones.SelectedValue = (((HiddenField)GrdVuelos.SelectedRow.Cells[6].FindControl("HdnAvion")).Value).ToString();
+                CboCiudadesO.SelectedValue = (((HiddenField)GrdVuelos.SelectedRow.Cells[6].FindControl("HdnOrigen")).Value).ToString();
+                CboCiudadesD.SelectedValue = (((HiddenField)GrdVuelos.SelectedRow.Cells[6].FindControl("HdnDestino")).Value).ToString();
+                MultiView.SetActiveView(ViewTecleo);
+                Modo = ModosDeTecleo.Modificar;
+            }
+            catch(Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
         }
 
         protected void GrdVuelos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            try
+            {
+                Vuelos vuelo = new Vuelos();
+                Vuelos.IdVuelo = Convert.ToInt32((((HiddenField)GrdVuelos.Rows[e.RowIndex].Cells[6].FindControl("HdnVuelo")).Value));
+                vuelo.Eliminar();
+                Vuelos.IdVuelo = 0;
+            }
+            catch (Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
+        }
 
+        protected void CboCiudadesO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Generica cbo = new Generica();
+                cbo.LLenarCombos(ref CboCiudadesD, Convert.ToInt32(CboCiudadesO.SelectedValue));
+            }
+            catch (Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
         }
 
         private void Buscar()
@@ -129,6 +169,19 @@ namespace AeroLinea.Forms
             }
         }
 
+        private void LimpiarCampos()
+        {
+            try
+            {
+                TxtFechaT.Text = string.Empty;
+                CboAviones.SelectedValue = "0";
+                CboCiudadesO.SelectedValue = "0";
+                CboCiudadesD.SelectedValue = "0";
+            }catch(Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
+        }
         enum ModosDeTecleo
         {
             Grabar = 1,
