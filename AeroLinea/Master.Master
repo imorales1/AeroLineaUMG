@@ -120,6 +120,12 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
+                                    <a href="/Forms/FrmVentaBoletosVuelo.aspx" class="nav-link">
+                                        <i class="nav-icon fab fa-sellsy"></i>
+                                        <p>Venta de Boletos</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a href="#" class="nav-link">
                                         <i class="nav-icon fas fa-database"></i>
                                         <p>Datos Maestros</p>

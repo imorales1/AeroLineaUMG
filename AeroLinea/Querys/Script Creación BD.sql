@@ -1,5 +1,5 @@
 	
-    CREATE DATABASE DbAerolinea
+      CREATE DATABASE DbAerolinea
     
     USE DbAerolinea
     
@@ -108,3 +108,4 @@ ADD COLUMN `Tipo` TINYINT NULL AFTER `IdVuelo`;
 	
     ALTER TABLE `dbaerolinea`.`tblsecroles` 
 CHANGE COLUMN `Descripcion` `Descripcion` VARCHAR(300) NULL DEFAULT NULL ;
+    

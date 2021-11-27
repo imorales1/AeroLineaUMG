@@ -2205,6 +2205,7 @@
     <Content Include="Forms\FrmCompañias.aspx" />
     <Content Include="Forms\FrmCiudades.aspx" />
     <Content Include="Forms\FrmUsuarios.aspx" />
+    <Content Include="Forms\FrmVentaBoletosVuelo.aspx" />
     <Content Include="Forms\FrmVuelosProgramados.aspx" />
     <Content Include="Forms\Inicio.aspx" />
     <Content Include="Global.asax" />
@@ -2601,6 +2602,13 @@
     </Compile>
     <Compile Include="Forms\FrmUsuarios.aspx.designer.cs">
       <DependentUpon>FrmUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmVentaBoletosVuelo.aspx.cs">
+      <DependentUpon>FrmVentaBoletosVuelo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmVentaBoletosVuelo.aspx.designer.cs">
+      <DependentUpon>FrmVentaBoletosVuelo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Forms\FrmVuelosProgramados.aspx.cs">
       <DependentUpon>FrmVuelosProgramados.aspx</DependentUpon>

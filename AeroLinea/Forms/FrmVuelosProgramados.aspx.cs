@@ -23,6 +23,7 @@ namespace AeroLinea.Forms
                     Generica combos = new Generica();
                     combos.LLenarCombos(ref CboAviones);
                     combos.LLenarCombos(ref CboCiudadesO);
+                    combos.LLenarCombos(ref CboCiudadesD);
                 }
             }
             catch(Exception ex)
@@ -112,7 +113,7 @@ namespace AeroLinea.Forms
             try
             {
                 Vuelos.IdVuelo = Convert.ToInt32((((HiddenField)GrdVuelos.SelectedRow.Cells[6].FindControl("HdnVuelo")).Value));
-                TxtFechaT.Text = GrdVuelos.SelectedRow.Cells[0].Text;
+                TxtFechaT.Text = GrdVuelos.SelectedRow.Cells[0].Text.Trim();
                 CboAviones.SelectedValue = (((HiddenField)GrdVuelos.SelectedRow.Cells[6].FindControl("HdnAvion")).Value).ToString();
                 CboCiudadesO.SelectedValue = (((HiddenField)GrdVuelos.SelectedRow.Cells[6].FindControl("HdnOrigen")).Value).ToString();
                 CboCiudadesD.SelectedValue = (((HiddenField)GrdVuelos.SelectedRow.Cells[6].FindControl("HdnDestino")).Value).ToString();

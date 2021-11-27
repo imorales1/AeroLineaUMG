@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="FrmVuelosProgramados.aspx.cs" Inherits="AeroLinea.Forms.FrmVuelosProgramados" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="FrmVentaBoletosVuelo.aspx.cs" Inherits="AeroLinea.Forms.FrmVentaBoletosVuelo" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -6,7 +6,7 @@
     <asp:UpdatePanel ID="PanelPrincipal" runat="server">
         <ContentTemplate>
             <section class="content-header">
-                <h1>Vuelos Programados</h1>
+                <h1>Boletos Vendidos</h1>
             </section>
             <section class="content">
                 <div class="container-fluid">
@@ -16,33 +16,52 @@
                             <div class="row">
                                 <div class="col-md-1">
                                     <div class="form-group">
+                                        <asp:Label Text="Clase" runat="server" />
+                                        <asp:TextBox ID="TxtClase" runat="server" CssClass="form-control input-sm" Width="100%" ></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
                                         <asp:Label Text="No. Vuelo" runat="server" />
-                                        <asp:TextBox ID="TxtIdVuelo" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                        <asp:DropDownList ID="CboVuelosProgramados" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
-                                        <asp:Label Text="Fecha" runat="server" />
-                                        <asp:TextBox ID="TxtFecha" runat="server" CssClass="form-control input-sm" Width="100%" AutoPostBack="True" TextMode="Date"></asp:TextBox>
+                                        <asp:Label Text="Boletos Disponibles" runat="server" />
+                                        <asp:TextBox ID="TxtCantidadBoletos" runat="server" CssClass="form-control input-sm" Width="100%" ></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-md-3"></div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <asp:Label Text="No. Asiento" runat="server" />
+                                        <asp:TextBox ID="TxtAsiento" runat="server" CssClass="form-control input-sm" Width="100%" ></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <asp:Label Text="Costo" runat="server" />
+                                        <asp:TextBox ID="TxtCosto" runat="server" CssClass="form-control input-sm" Width="100%" ></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <br />
-                                        <asp:LinkButton ID="CmdBuscar" runat="server" CssClass="btn btn-default" Width="100%" OnClick="CmdBuscar_Click"><li class="fa fa-search">Buscar</li></asp:LinkButton>
+                                        <asp:LinkButton ID="CmdBuscar" runat="server" CssClass="btn btn-default" Width="100%"><li class="fa fa-search">Buscar</li></asp:LinkButton>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <br />
-                                        <asp:LinkButton ID="CmdExportar" Text="text" runat="server" CssClass="btn btn-success" Width="100%" OnClick="CmdExportar_Click" ><li class="fa fa-file-excel">Exportar</li></asp:LinkButton>
+                                        <asp:LinkButton ID="CmdExportar" Text="text" runat="server" CssClass="btn btn-success" Width="100%"><li class="fa fa-file-excel">Exportar</li></asp:LinkButton>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <br />
-                                        <asp:LinkButton ID="CmdAgregar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdAgregar_Click">Grabar Nuevo</asp:LinkButton>
+                                        <asp:LinkButton ID="CmdAgregar" runat="server" CssClass="btn btn-primary" Width="100%">Grabar Nuevo</asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
@@ -50,17 +69,20 @@
                                 <div class="col-md-12">
                                     <div class="card">
                                         <div class="card-header">
-                                            <h3 class="card-title">Ciudades</h3>
+                                            <h3 class="card-title">Boletos</h3>
                                         </div>
                                         <div class="card-body table-responsive">
-                                            <asp:GridView ID="GrdVuelos" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" OnSelectedIndexChanged="GrdVuelos_SelectedIndexChanged" OnRowDeleting="GrdVuelos_RowDeleting">
+                                            <asp:GridView ID="GrdVuelos" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False">
                                                 <Columns>
                                                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" DataFormatString="{0:d}" />
+                                                    <asp:BoundField DataField="Compañia" HeaderText="Compañia" SortExpression="Compañia" />
                                                     <asp:BoundField DataField="Origen" HeaderText="Origen" SortExpression="Origen" />
                                                     <asp:BoundField DataField="Destino" HeaderText="Destino" SortExpression="Destino" />
-                                                    <asp:BoundField DataField="Modelo" HeaderText="Modelo" SortExpression="Modelo" />
-                                                    <asp:BoundField DataField="Boletos" HeaderText="Boletos Disponibles" SortExpression="Boletos" />
-                                                    <asp:BoundField DataField="Compañia" HeaderText="Compañia" SortExpression="Compañia" />
+                                                    <asp:BoundField DataField="Modelo" HeaderText="Avión" SortExpression="Modelo" />
+                                                    <asp:BoundField DataField="Boleto" HeaderText="No. Boleto" SortExpression="Boleto" />
+                                                    <asp:BoundField DataField="Asiento" HeaderText="No. Asiento" SortExpression="Asiento" />
+                                                    <asp:BoundField DataField="Costo" HeaderText="Costo" SortExpression="Costo" />
+                                                    <asp:BoundField DataField="Vuelo" HeaderText="Vuelo" SortExpression="Vuelo" />
                                                     <asp:TemplateField HeaderText="">
                                                         <EditItemTemplate>
                                                         </EditItemTemplate>
@@ -102,7 +124,7 @@
                                             <div class="col-md-3">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Fecha" runat="server" />
-                                                    <asp:TextBox ID="TxtFechaT" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Date" AutoPostBack="True"></asp:TextBox>
+                                                    <asp:TextBox ID="TxtFechaT" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Date"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -114,7 +136,7 @@
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Ciudad Origen" runat="server" />
-                                                    <asp:DropDownList ID="CboCiudadesO" runat="server" CssClass="form-control select2" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="CboCiudadesO_SelectedIndexChanged"></asp:DropDownList>
+                                                    <asp:DropDownList ID="CboCiudadesO" runat="server" CssClass="form-control select2" Width="100%" AutoPostBack="True"></asp:DropDownList>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
@@ -129,19 +151,18 @@
                                         <div class="row">
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <asp:LinkButton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdGrabarModificar_Click" ><li class="fa fa-save">Grabar</li></asp:LinkButton>
+                                                    <asp:LinkButton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%"><li class="fa fa-save">Grabar</li></asp:LinkButton>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
-                                                    <asp:LinkButton ID="CmdCancelar" runat="server" CssClass="btn btn-danger" Width="100%" OnClick="CmdCancelar_Click" >Cancelar</asp:LinkButton>
+                                                    <asp:LinkButton ID="CmdCancelar" runat="server" CssClass="btn btn-danger" Width="100%">Cancelar</asp:LinkButton>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
                         </asp:View>
                     </asp:MultiView>
                 </div>

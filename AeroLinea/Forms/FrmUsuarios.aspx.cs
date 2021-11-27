@@ -63,6 +63,9 @@ namespace AeroLinea.Forms
                 else
                 {
                     Helper.Generica.Mensaje(this, "Usuario Modificado con éxito");
+                    Usuarios.IdUsuario = 0;
+                    MultiView.SetActiveView(ViewFiltro);
+                    Buscar();
                 }
                 
             }
@@ -130,7 +133,11 @@ namespace AeroLinea.Forms
         {
             try
             {
-                
+                Usuarios us = new Usuarios();
+                Usuarios.IdUsuario = Convert.ToInt32((((HiddenField)GrdUsuarios.Rows[e.RowIndex].Cells[4].FindControl("HdnIdUsuario")).Value));
+                us.Eliminar();
+                Usuarios.IdUsuario = 0;
+                Buscar();
             }
             catch (Exception ex)
             {

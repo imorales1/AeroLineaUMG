@@ -5,7 +5,6 @@
     
     INSERT INTO TblCompañias(Nombre,Direccion, Correo, Telefono)
     
-    
     DELIMITER $$
     CREATE PROCEDURE UpSCompañias(
 		IN PIdCompañia INT 
@@ -17,7 +16,6 @@
         AND Nombre = IFNULL(PNombre,Nombre);
     END 
     $$
-    
     
 	DELIMITER $$
     CREATE PROCEDURE UpIuCompañias(
@@ -257,13 +255,14 @@
 			INSERT INTO TblSecUsuarios(Nombres, Apellidos, Fotografia, Usuario, Contraseña, IdRol)
 			VALUES(PNombres, PApellidos, PFoto, PUsuario, PContraseña, PIdRol);
 		ELSE
-			UPDATE TblSecUsuarios SET Nombes = PNombres, Apellidos = PApellidos, Fotografia = PFoto, Usuario = PUsuario
+			UPDATE TblSecUsuarios SET Nombres = PNombres, Apellidos = PApellidos, Fotografia = PFoto, Usuario = PUsuario
 										, Contraseña = PContraseña, IdRol = PIdRol
 			WHERE IdUsuario = PIdUsuario;
 		END IF;
     END;
     $$
     
+    drop procedure UpIuUsuarios
     SELECT * FROM TblSecUsuarios
     select * from TblSecRoles
     DELIMITER $$
@@ -280,6 +279,8 @@
     END
     $$
     
+    call UpsUsuarios(null,null)
+    
     DELIMITER $$
     CREATE PROCEDURE UpsUsuarioDatos(IN PId INT)
     BEGIN
@@ -289,8 +290,20 @@
     END
     $$
     
+    select * from tblsecusuarios
     
     call UpsUsuarioDatos(1);
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpDUsuarios(IN PIdUsuario INT)
+    BEGIN
+		DELETE FROM TblSecUsuarios
+        WHERE IdUsuario = PIdUsuario;
+    END
+    $$
+    
+    call UpDUsuarios(null)
+    drop procedure UpDUsuarios
     
     ### Conctrol de vuelos
     
@@ -340,11 +353,12 @@
     $$
     
     select * FROM TblOrigenDestino
-    SELECT * FROM TblCiudades
+    SELECT * FROM TblVuelos
     DELIMITER $$
 	CREATE PROCEDURE UpSVuelos(IN PIdVuelo INT, IN PFecha DATETIME)
     BEGIN
-		SELECT a.IdVuelo, a.Fecha, d.Nombre Origen, e.Nombre Destino, f.Modelo, f.Pasajeros Boletos, g.Nombre Compañia
+		SELECT a.IdVuelo, f.IdAvion, d.IdCiudad IdOrigen, e.IdCiudad IdDestino, a.Fecha, d.Nombre Origen
+				, e.Nombre Destino, f.Modelo, f.Pasajeros Boletos, g.Nombre Compañia
         FROM TblVuelos a
         INNER JOIN (SELECT a.IdCiudad Origen, a.IdVuelo
 					FROM TblOrigenDestino a
@@ -362,4 +376,48 @@
     $$
     
     call UpSVuelos(null,null)
+    drop procedure UpSVuelos
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpDVuelos(IN PIdVuelo INT)
+    BEGIN
+		DELETE FROM TblVuelos
+        WHERE IdVuelo = PIdVuelo;
+    END
+    $$
+    
+    # PROCEDIMIENTOS COMBOS 
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpSAvionesCombo()
+    BEGIN 
+		SELECT 0 ID, "Ninguno" Descripcion
+        UNION ALL
+		SELECT IdAvion ID, CONCAT(IdAvion, "-", Modelo) Descripcion
+        FROM TblAviones;
+    END
+    $$
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpSCiudadesCombo(IN PIdCiudad INT)
+    BEGIN
+		IF PIdCiudad <> 0
+        THEN
+			SELECT 0 ID, "Ninguna" Descripcion
+			UNION ALL
+			SELECT IdCiudad ID, CONCAT(IdCiudad, "-", Nombre) Descripcion
+			FROM TblCiudades
+			WHERE IdCiudad <> PIdCiudad;
+        ELSE
+			SELECT 0 ID, "Ninguna" Descripcion
+			UNION ALL
+			SELECT IdCiudad ID, CONCAT(IdCiudad, "-", Nombre) Descripcion
+			FROM TblCiudades;
+		END IF;
+    END
+    $$
+    
+    call UpSCiudadesCombo(null)
+    
+    DROP PROCEDURE UpSCiudadesCombo
     
