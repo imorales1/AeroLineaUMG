@@ -51,6 +51,15 @@ namespace AeroLinea.Forms
         protected global::System.Web.UI.WebControls.View ViewFiltro;
 
         /// <summary>
+        /// Control TxtBoleto.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtBoleto;
+
+        /// <summary>
         /// Control TxtClase.
         /// </summary>
         /// <remarks>
@@ -76,24 +85,6 @@ namespace AeroLinea.Forms
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TxtCantidadBoletos;
-
-        /// <summary>
-        /// Control TxtAsiento.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtAsiento;
-
-        /// <summary>
-        /// Control TxtCosto.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtCosto;
 
         /// <summary>
         /// Control CmdBuscar.
@@ -123,13 +114,13 @@ namespace AeroLinea.Forms
         protected global::System.Web.UI.WebControls.LinkButton CmdAgregar;
 
         /// <summary>
-        /// Control GrdVuelos.
+        /// Control GrdBoletos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GrdVuelos;
+        protected global::System.Web.UI.WebControls.GridView GrdBoletos;
 
         /// <summary>
         /// Control LblRegistros.
@@ -150,40 +141,58 @@ namespace AeroLinea.Forms
         protected global::System.Web.UI.WebControls.View ViewTecleo;
 
         /// <summary>
-        /// Control TxtFechaT.
+        /// Control TxtClaseT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxtFechaT;
+        protected global::System.Web.UI.WebControls.TextBox TxtClaseT;
 
         /// <summary>
-        /// Control CboAviones.
+        /// Control TxtAsientoT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CboAviones;
+        protected global::System.Web.UI.WebControls.TextBox TxtAsientoT;
 
         /// <summary>
-        /// Control CboCiudadesO.
+        /// Control TxtCostoT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CboCiudadesO;
+        protected global::System.Web.UI.WebControls.TextBox TxtCostoT;
 
         /// <summary>
-        /// Control CboCiudadesD.
+        /// Control CboVuelosProgramadosT.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CboCiudadesD;
+        protected global::System.Web.UI.WebControls.DropDownList CboVuelosProgramadosT;
+
+        /// <summary>
+        /// Control TxtCliente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtCliente;
+
+        /// <summary>
+        /// Control TxtNombreCLiente.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtNombreCLiente;
 
         /// <summary>
         /// Control CmdGrabarModificar.

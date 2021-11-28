@@ -78,6 +78,8 @@ namespace AeroLinea.Forms
                 {
                     Helper.Generica.Mensaje(this, "Registro modificado con éxito");
                     LimpiarCampos();
+                    Clientes.IdCliente = 0;
+                    Modo = ModosDeTecleo.Grabar;
                     MultiView.SetActiveView(ViewFiltro);
                     Buscar();
                 }
@@ -115,6 +117,7 @@ namespace AeroLinea.Forms
                 Clientes cl = new Clientes();
                 Clientes.IdCliente = Convert.ToInt32((((HiddenField)GrdClientes.Rows[e.RowIndex].Cells[4].FindControl("HdnCliente")).Value));
                 cl.Eliminar();
+                Clientes.IdCliente = 0;
                 Buscar();
             }catch(Exception ex)
             {

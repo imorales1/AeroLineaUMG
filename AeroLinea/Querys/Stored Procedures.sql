@@ -378,13 +378,40 @@
     call UpSVuelos(null,null)
     drop procedure UpSVuelos
     
+    SELECT * FROM TblOrigenDestino
+    drop procedure UpDVuelos
+    
     DELIMITER $$
     CREATE PROCEDURE UpDVuelos(IN PIdVuelo INT)
     BEGIN
+		DELETE FROM TblOrigenDestino
+        WHERE IdVuelo = PIdVuelo;
+        
 		DELETE FROM TblVuelos
         WHERE IdVuelo = PIdVuelo;
     END
     $$
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpSVuelosCombo()
+    BEGIN
+		SELECT 0 ID, "Ninguno" Descripcion
+        UNION ALL
+		SELECT a.IdVuelo ID, CONCAT(a.IdVuelo," - ", CONCAT(d.Nombre," - ", e.Nombre) ) Descripcion
+        FROM TblVuelos a
+        INNER JOIN (SELECT a.IdCiudad Origen, a.IdVuelo
+					FROM TblOrigenDestino a
+                    WHERE a.Tipo = 1) b ON a.IdVuelo = b.IdVuelo
+        INNER JOIN (SELECT a.IdCiudad Destino, a.IdVuelo
+					FROM TblOrigenDestino a
+                    WHERE a.Tipo = 2) c ON a.IdVuelo = c.IdVuelo
+		INNER JOIN TblCiudades d ON b.Origen = d.IdCiudad
+        INNER JOIN TblCiudades e ON c.Destino = e.IdCiudad;
+    END
+    $$
+    
+    drop procedure UpSVuelosCombo
+    CALL UpSVuelosCombo()
     
     # PROCEDIMIENTOS COMBOS 
     
@@ -421,3 +448,61 @@
     
     DROP PROCEDURE UpSCiudadesCombo
     
+    SELECT * FROM TblClientes
+    
+    ##  VENTA DE BOLETOS A CLIENTES
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpIUBoletos(IN PClase CHAR(2), IN PAsiento INT, IN PCosto Decimal(7,3), IN PIdVuelo INT, IN PIdCliente INT, IN PIdBoleto INT)
+    BEGIN 
+		IF NOT EXISTS(SELECT NULL
+					  FROM TblBoletos
+                      WHERE IdBoleto = PIdBoleto
+		)
+		THEN
+			INSERT INTO TblBoletos(Clase, Asiento, Costo, IdVuelo, IdCliente)
+			VALUES(PClase, PAsiento, PCosto, PIdVuelo, PIdCliente);
+		ELSE
+			UPDATE TblBoletos SET Clase = PClase, Asiento = PAsiento, Costo = PCosto
+									,IdVuelo = PIcVuelo
+			WHERE IdBoleto = PIdBoleto;
+		END IF;
+    END;
+    $$
+    
+    CALL UpIUBoletos("A", 3, 2500, 6, 5,0)
+    
+    DROP PROCEDURE UpIUBoletos
+    SELECT * FROM TblBoletos
+    SELECT  * FROM TblClientes
+    
+    DELIMITER $$
+    CREATE PROCEDURE UpSBoletos(IN PIdBoleto INT, IN PClase CHAR(2), IN PIdVuelo INT)
+    BEGIN
+		SELECT a.Fecha, h.IdBoleto, a.IdVuelo, CONCAT(h.IdBoleto, "-", d.Nombre, " - ", e.Nombre) Boleto
+				, f.Modelo, g.Nombre Compañia, h.Asiento, CONCAT(i.IdCliente, "-", i.Nombres, ",", i.Apellidos) Cliente
+                , h.Costo 
+        FROM TblVuelos a
+        INNER JOIN (SELECT a.IdCiudad Origen, a.IdVuelo
+					FROM TblOrigenDestino a
+                    WHERE a.Tipo = 1) b ON a.IdVuelo = b.IdVuelo
+        INNER JOIN (SELECT a.IdCiudad Destino, a.IdVuelo
+					FROM TblOrigenDestino a
+                    WHERE a.Tipo = 2) c ON a.IdVuelo = c.IdVuelo
+        INNER JOIN TblCiudades d ON b.Origen = d.IdCiudad
+        INNER JOIN TblCiudades e ON c.Destino = e.IdCiudad 
+        INNER JOIN TblAviones f ON a.IdAvion = f.IdAvion
+        INNER JOIN TblCompañias g ON f.IdCompañia = g.IdCompañia
+        INNER JOIN TblBoletos h ON a.IdVuelo = h.IdVuelo
+        INNER JOIN TblClientes i ON h.IdCliente = i.IdCliente
+        WHERE a.IdVuelo = IFNULL(PIdVuelo, a.IdVuelo)
+        AND h.IdBoleto = IFNULL(PIdBoleto, h.IdBoleto)
+        AND h.Clase = IFNULL(PClase, h.Clase);
+    END
+    $$
+    
+    CALL UpSBoletos(NULL, NULL, NULL)
+    
+    drop procedure UpSBoletos
+
+

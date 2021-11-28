@@ -161,6 +161,10 @@ namespace AeroLinea.Helper
                     case "CboCiudadesD":
                         table = combo.ObtenerCiduades(parametro);
                         break;
+                    case "CboVuelosProgramados":
+                    case "CboVuelosProgramadosT":
+                        table = combo.ObtenerVuelosProgramados();
+                        break;
                     default:
                         table = null;
                         break;

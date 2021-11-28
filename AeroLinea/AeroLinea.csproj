@@ -2491,6 +2491,17 @@
     <Content Include="Master.Master" />
     <Content Include="Content\toastr.less" />
     <Content Include="Content\toastr.scss" />
+    <Content Include="DataSet\DataSet.xsc">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet\DataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSet\DataSet.xss">
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Querys\Script Creación BD.sql" />
     <Content Include="Querys\Stored Procedures.sql" />
@@ -2553,7 +2564,13 @@
     <Compile Include="Contact.aspx.designer.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataSet\DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Db\AeroNavesDAL.cs" />
+    <Compile Include="Db\BoletosDAL.cs" />
     <Compile Include="Db\CadenaDB.cs" />
     <Compile Include="Db\CiudadesDAL.cs" />
     <Compile Include="Db\ClientesDAL.cs" />
@@ -2640,6 +2657,7 @@
     <Compile Include="Negocio\Clientes.cs" />
     <Compile Include="Negocio\Compañias.cs" />
     <Compile Include="Negocio\Usuarios.cs" />
+    <Compile Include="Negocio\VentaBoletos.cs" />
     <Compile Include="Negocio\Vuelos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
@@ -2666,6 +2684,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reportes\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

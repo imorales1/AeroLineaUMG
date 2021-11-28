@@ -134,6 +134,7 @@ namespace AeroLinea.Forms
                 Vuelos.IdVuelo = Convert.ToInt32((((HiddenField)GrdVuelos.Rows[e.RowIndex].Cells[6].FindControl("HdnVuelo")).Value));
                 vuelo.Eliminar();
                 Vuelos.IdVuelo = 0;
+                Buscar();
             }
             catch (Exception ex)
             {

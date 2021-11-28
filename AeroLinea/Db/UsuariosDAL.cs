@@ -55,7 +55,7 @@ namespace AeroLinea.Db
                         tbl.Load(rd);
                     }
                     cn.Close();
-                }catch(Exception ex)
+                }catch(Exception)
                 {
                     throw;
                 }
