@@ -18,15 +18,23 @@ namespace AeroLinea.Forms
         {
             if (!Page.IsPostBack)
             {
-                MultiView.SetActiveView(ViewFiltro);
-                Generica combos = new Generica();
-                combos.LLenarCombos(ref CboVuelosProgramados);
-                combos.LLenarCombos(ref CboVuelosProgramadosT);
-                Modo = ModosDeTecleo.Grabar;
-                if(Session["Rol"].ToString() != "OPR")
+                if(Session["Usuario"] != null)
                 {
-                    GrdBoletos.Columns[7].Visible = false;
-                    GrdBoletos.Columns[8].Visible = false;
+                    MultiView.SetActiveView(ViewFiltro);
+                    Generica combos = new Generica();
+                    combos.LLenarCombos(ref CboVuelosProgramados);
+                    combos.LLenarCombos(ref CboVuelosProgramadosT);
+                    Modo = ModosDeTecleo.Grabar;
+                    if (Session["Rol"].ToString() != "OPR")
+                    {
+                        GrdBoletos.Columns[7].Visible = false;
+                        GrdBoletos.Columns[8].Visible = false;
+                        CmdAgregar.Enabled = false;
+                    }
+                }
+                else
+                {
+                    Response.Redirect("FrmLogin.aspx");
                 }
             }
         }

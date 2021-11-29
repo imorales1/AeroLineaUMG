@@ -18,8 +18,22 @@ namespace AeroLinea.Forms
             {
                 if (!Page.IsPostBack)
                 {
-                    MultiView.SetActiveView(ViewFiltro);
-                    Modo = ModosDeTecleo.Grabar;
+                    if(Session["Usuario"] != null)
+                    {
+                        MultiView.SetActiveView(ViewFiltro);
+                        Modo = ModosDeTecleo.Grabar;
+
+                        if (Session["Rol"].ToString() != "OPR")
+                        {
+                            GrdClientes.Columns[4].Visible = false;
+                            GrdClientes.Columns[5].Visible = false;
+                            CmdAgregar.Enabled = false;
+                        }
+                    }
+                    else
+                    {
+                        Response.Redirect("FrmLogin.aspx");
+                    }
                 }
             }catch(Exception ex)
             {

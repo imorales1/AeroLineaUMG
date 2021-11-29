@@ -15,20 +15,28 @@ namespace AeroLinea.Forms
         {
             if (!Page.IsPostBack)
             {
-                MultiView.SetActiveView(ViewBusqueda);
-                Modo = ModoDeTecleo.Grabar;
+                if(Session["Usuario"] != null)
+                {
+                    MultiView.SetActiveView(ViewBusqueda);
+                    Modo = ModoDeTecleo.Grabar;
+
+                    if (Session["Rol"].ToString() != "OPR")
+                    {
+                        GrdCompañias.Columns[4].Visible = false;
+                        GrdCompañias.Columns[5].Visible = false;
+                        CmdAgregar.Enabled = false;
+                    }
+                }
+                else
+                {
+                    Response.Redirect("FrmLogin.aspx");
+                }
             }
         }
 
         protected void CmdBuscar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Buscar();
-            }catch(Exception ex)
-            {
-
-            }
+            Buscar();
         }
 
         protected void CmdAgregar_Click(object sender, EventArgs e)

@@ -22,7 +22,7 @@ namespace AeroLinea
             {
                 if (!Page.IsPostBack)
                 {
-                    if (LblUsuario.Text.Equals(""))
+                    if(Session["Usuario"].ToString() != null)
                     {
                         CargarFotografia();
                     }
@@ -42,9 +42,28 @@ namespace AeroLinea
                 log.Usuario = Session["Usuario"].ToString() ;
                 row = log.IniciarSesion();
                 Image1.ImageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])row["Fotografia"]);
-                LblUsuario.Text = row["Nombre"].ToString() ;
+                LblUsuario.Text = row["Nombre"].ToString();
+
+                if(Session["Rol"].ToString() != "ADM")
+                {
+                    PnlAdministrador.Visible = false;
+                }
             }
             catch(Exception)
+            {
+                throw;
+            }
+        }
+
+        protected void CmdCerrarSesion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Session["Usuario"] = null;
+                Session["Rol"] = null;
+                Response.Redirect("FrmLogin.aspx");
+            }
+            catch (Exception)
             {
                 throw;
             }

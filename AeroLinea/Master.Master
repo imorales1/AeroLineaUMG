@@ -66,7 +66,7 @@
                             <!-- CONTROLES EN ENCABEZADO -->
                             ´<%--<asp:LinkButton ID="CmdLogin" runat="server" CssClass="nav-link"><li class="fa fa-user"><p>Iniciar Sesión</p></li></asp:LinkButton>--%>
                             <asp:Panel ID="PnlSesion" runat="server" >
-                                <asp:LinkButton ID="CmdCerrarSesion" runat="server" CssClass="btn btn-block btn-light btn-falt">Cerrar Sesión</asp:LinkButton>
+                                <asp:LinkButton ID="CmdCerrarSesion" runat="server" CssClass="btn btn-block btn-light btn-falt" OnClick="CmdCerrarSesion_Click">Cerrar Sesión</asp:LinkButton>
                                 <div class="navbar-search-block"></div>
                             </asp:Panel>
                         </div>
@@ -107,13 +107,16 @@
                                 <li class="nav-item">
                                     
                                 </li>
-                                <li class="nav-item">
+                                <asp:Panel ID="PnlAdministrador" runat="server" >
+                                    <li class="nav-item">
                                     <a href="/Forms/FrmUsuarios.aspx" class="nav-link">
                                         <i class="nav-icon fas fa-users"></i>
                                         <p>Usuarios</p>
                                     </a>
                                     <%--<asp:LinkButton href="" ID="BtnUsuarios" runat="server" Text=" Usuarios" CssClass="nav-link fas fa-users" ></asp:LinkButton>--%> 
                                 </li>
+                                </asp:Panel>
+                                
                                 <li class="nav-item"> 
                                     <a href="/Forms/FrmVuelosProgramados.aspx" class="nav-link"> 
                                         <i class="nav-icon fas fa-plane"></i>

@@ -19,12 +19,20 @@ namespace AeroLinea.Forms
             {
                 if (!Page.IsPostBack)
                 {
-                    MultiView.SetActiveView(ViewFiltro);
-                    Helper.Generica cbo = new Helper.Generica();
-                    cbo.LLenarCombos(ref CboRoles);
-                    Modo = ModosDeTecleo.Grabar;
+                    if(Session["Usuario"] != null)
+                    {
+                        MultiView.SetActiveView(ViewFiltro);
+                        Helper.Generica cbo = new Helper.Generica();
+                        cbo.LLenarCombos(ref CboRoles);
+                        Modo = ModosDeTecleo.Grabar;
+                    }
+                    else
+                    {
+                        Response.Redirect("FrmLogin.aspx");
+                    }
                 }
-            }catch(Exception ex)
+            }
+            catch(Exception ex)
             {
                 Helper.Generica.Mensaje(this, ex.Message);
             }
