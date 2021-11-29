@@ -6,12 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AeroLinea.Negocio;
 using AeroLinea.Helper;
+using System.IO;
+using Microsoft.Reporting.WebForms;
 
 namespace AeroLinea.Forms
 {
     public partial class FrmVentaBoletosVuelo : System.Web.UI.Page
     {
-        private ModosDeTecleo Modo { get; set; }
+        private static ModosDeTecleo Modo { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -21,6 +23,11 @@ namespace AeroLinea.Forms
                 combos.LLenarCombos(ref CboVuelosProgramados);
                 combos.LLenarCombos(ref CboVuelosProgramadosT);
                 Modo = ModosDeTecleo.Grabar;
+                if(Session["Rol"].ToString() != "OPR")
+                {
+                    GrdBoletos.Columns[7].Visible = false;
+                    GrdBoletos.Columns[8].Visible = false;
+                }
             }
         }
 
@@ -55,12 +62,16 @@ namespace AeroLinea.Forms
                 {
                     Generica.Mensaje(this, "Registro grabado con éxito");
                     LimpiarCampos();
+                    FrmBoletos frm = new FrmBoletos();
+                    frm.IdBoleto = 2;
+                    Response.Redirect("FrmBoletos.aspx");
                 }
                 else
                 {
                     Generica.Mensaje(this, "Registro Modificado con éxito");
                     Modo = ModosDeTecleo.Grabar;
                 }
+
             }catch(Exception ex)
             {
                 Generica.Mensaje(this, ex.Message);
@@ -120,6 +131,7 @@ namespace AeroLinea.Forms
                 Generica.Mensaje(this, ex.Message);
             }
         }
+
         enum ModosDeTecleo
         {
             Grabar = 1,

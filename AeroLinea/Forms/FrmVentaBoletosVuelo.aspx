@@ -1,4 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="FrmVentaBoletosVuelo.aspx.cs" Inherits="AeroLinea.Forms.FrmVentaBoletosVuelo" %>
+
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -103,71 +105,74 @@
                             </div>
                         </asp:View>
                         <asp:View ID="ViewTecleo" runat="server">
-                            <div class="col-md-12">
-                                <div class="card card-primary">
-                                    <div class="card-header">
-                                        <center>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card card-primary">
+                                        <div class="card-header">
+                                            <center>
                                             <h3 class="card-title">Registro de Vuelos</h3>
                                         </center>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                                <div class=" form-group">
-                                                    <asp:Label Text="Clase" runat="server" />
-                                                    <asp:TextBox ID="TxtClaseT" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-1">
+                                                    <div class=" form-group">
+                                                        <asp:Label Text="Clase" runat="server" />
+                                                        <asp:TextBox ID="TxtClaseT" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class=" form-group">
-                                                    <asp:Label Text="No. Asiento" runat="server" />
-                                                    <asp:TextBox ID="TxtAsientoT" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                <div class="col-md-2">
+                                                    <div class=" form-group">
+                                                        <asp:Label Text="No. Asiento" runat="server" />
+                                                        <asp:TextBox ID="TxtAsientoT" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class=" form-group">
-                                                    <asp:Label Text="Costo" runat="server" />
-                                                    <asp:TextBox ID="TxtCostoT" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                <div class="col-md-2">
+                                                    <div class=" form-group">
+                                                        <asp:Label Text="Costo" runat="server" />
+                                                        <asp:TextBox ID="TxtCostoT" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class=" form-group">
-                                                    <asp:Label Text="Vuelo" runat="server" />
-                                                    <asp:DropDownList ID="CboVuelosProgramadosT" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
+                                                <div class="col-md-2">
+                                                    <div class=" form-group">
+                                                        <asp:Label Text="Vuelo" runat="server" />
+                                                        <asp:DropDownList ID="CboVuelosProgramadosT" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class=" form-group">
-                                                    <asp:Label Text="Cliente" runat="server" />
-                                                    <asp:TextBox ID="TxtCliente" runat="server" CssClass="form-control select2" Width="100%"></asp:TextBox>
+                                                <div class="col-md-2">
+                                                    <div class=" form-group">
+                                                        <asp:Label Text="Cliente" runat="server" />
+                                                        <asp:TextBox ID="TxtCliente" runat="server" CssClass="form-control select2" Width="100%"></asp:TextBox>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class=" form-group">
-                                                    <asp:Label Text="Nombre" runat="server" />
-                                                    <asp:TextBox ID="TxtNombreCLiente" runat="server" CssClass="form-control select2" Width="100%" Enabled="false"></asp:TextBox>
+                                                <div class="col-md-3">
+                                                    <div class=" form-group">
+                                                        <asp:Label Text="Nombre" runat="server" />
+                                                        <asp:TextBox ID="TxtNombreCLiente" runat="server" CssClass="form-control select2" Width="100%" Enabled="false"></asp:TextBox>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="card-footer">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <asp:LinkButton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdGrabarModificar_Click"><li class="fa fa-save">Grabar</li></asp:LinkButton>
+                                        <div class="card-footer">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <asp:LinkButton ID="CmdGrabarModificar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdGrabarModificar_Click"><li class="fa fa-save">Grabar</li></asp:LinkButton>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2">
-                                                <div class="form-group">
-                                                    <asp:LinkButton ID="CmdCancelar" runat="server" CssClass="btn btn-danger" Width="100%" OnClick="CmdCancelar_Click">Cancelar</asp:LinkButton>
+                                                <div class="col-md-2">
+                                                    <div class="form-group">
+                                                        <asp:LinkButton ID="CmdCancelar" runat="server" CssClass="btn btn-danger" Width="100%" OnClick="CmdCancelar_Click">Cancelar</asp:LinkButton>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         </asp:View>
                     </asp:MultiView>
-                </div>
+                    </div>
                 </div>
             </section>
         </ContentTemplate>
