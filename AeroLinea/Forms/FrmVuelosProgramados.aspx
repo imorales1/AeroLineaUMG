@@ -54,7 +54,8 @@
                                         </div>
                                         <div class="card-body table-responsive">
                                             <asp:GridView ID="GrdVuelos" runat="server" CssClass="table table-bordered" AutoGenerateColumns="False" OnSelectedIndexChanged="GrdVuelos_SelectedIndexChanged" OnRowDeleting="GrdVuelos_RowDeleting">
-                                                <Columns>
+                                                <Columns> 
+                                                    <asp:BoundField DataField="NoVuelo" HeaderText="No. Vuelo" SortExpression="NoVuelo" />
                                                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" DataFormatString="{0:d}" />
                                                     <asp:BoundField DataField="Origen" HeaderText="Origen" SortExpression="Origen" />
                                                     <asp:BoundField DataField="Destino" HeaderText="Destino" SortExpression="Destino" />
@@ -102,25 +103,25 @@
                                             <div class="col-md-3">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Fecha" runat="server" />
-                                                    <asp:TextBox ID="TxtFechaT" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Date" AutoPostBack="True"></asp:TextBox>
+                                                    <asp:TextBox ID="TxtFechaT" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Date" AutoPostBack="True" BackColor="#FFFF99"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Avión" runat="server" />
-                                                    <asp:DropDownList ID="CboAviones" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
+                                                    <asp:DropDownList ID="CboAviones" runat="server" CssClass="form-control select2" Width="100%" BackColor="#FFFF99"></asp:DropDownList>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Ciudad Origen" runat="server" />
-                                                    <asp:DropDownList ID="CboCiudadesO" runat="server" CssClass="form-control select2" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="CboCiudadesO_SelectedIndexChanged"></asp:DropDownList>
+                                                    <asp:DropDownList ID="CboCiudadesO" runat="server" CssClass="form-control select2" Width="100%" AutoPostBack="True" OnSelectedIndexChanged="CboCiudadesO_SelectedIndexChanged" BackColor="#FFFF99"></asp:DropDownList>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Ciudad Destino" runat="server" />
-                                                    <asp:DropDownList ID="CboCiudadesD" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
+                                                    <asp:DropDownList ID="CboCiudadesD" runat="server" CssClass="form-control select2" Width="100%" BackColor="#FFFF99"></asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>                          

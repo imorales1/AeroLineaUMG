@@ -21,7 +21,7 @@ namespace AeroLinea.Negocio
             try
             {
                 ClientesDAL cl = new ClientesDAL();
-                return cl.Buscar(Criterio);
+                return cl.Buscar(Criterio, IdCliente);
             }
             catch (Exception)
             {
@@ -48,6 +48,19 @@ namespace AeroLinea.Negocio
             {
                 ClientesDAL cl = new ClientesDAL();
                 cl.Eliminar(IdCliente);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public DataRow ConsultarClienteCreado()
+        {
+            try
+            {
+                ClientesDAL cl = new ClientesDAL();
+                return cl.ConsultarClienteCreado(IdCliente);
             }
             catch (Exception)
             {

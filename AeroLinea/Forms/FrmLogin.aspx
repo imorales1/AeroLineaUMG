@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <asp:TextBox ID="TxtContraseña" runat="server" CssClass="form-control input-sm" PlaceHolder="Contraseña" TextMode="Password"></asp:TextBox>
+                                    <asp:TextBox ID="TxtContraseña" runat="server" CssClass="form-control input-sm" PlaceHolder="Contraseña" TextMode="Password" MaxLength="10"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            r</form>
+            </form>
     </div>
 </body>
 </html>

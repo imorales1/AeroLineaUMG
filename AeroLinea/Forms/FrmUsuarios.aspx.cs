@@ -17,19 +17,19 @@ namespace AeroLinea.Forms
         {
             try
             {
-                if (!Page.IsPostBack)
+                if (Session["Usuario"] != null)
                 {
-                    if(Session["Usuario"] != null)
+                    if (!Page.IsPostBack)
                     {
+
                         MultiView.SetActiveView(ViewFiltro);
                         Helper.Generica cbo = new Helper.Generica();
                         cbo.LLenarCombos(ref CboRoles);
                         Modo = ModosDeTecleo.Grabar;
                     }
-                    else
-                    {
-                        Response.Redirect("FrmLogin.aspx");
-                    }
+                }else
+                {
+                    Response.Redirect("FrmLogin.aspx");
                 }
             }
             catch(Exception ex)

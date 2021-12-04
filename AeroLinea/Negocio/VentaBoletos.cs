@@ -15,13 +15,15 @@ namespace AeroLinea.Negocio
         public decimal Costo { get; set; }
         public int IdVuelo { get; set; }
         public int IdCliente { get; set; }
+        public DateTime? FechaInicial { get; set; }
+        public DateTime? FechaFinal { get; set; }
 
         public DataTable Buscar()
         {
             try
             {
                 BoletosDAL bl = new BoletosDAL();
-                return bl.Buscar(IdBoleto, Clase, IdVuelo);
+                return bl.Buscar(FechaInicial, FechaFinal, IdBoleto, Clase, IdVuelo);
             }
             catch (Exception)
             {

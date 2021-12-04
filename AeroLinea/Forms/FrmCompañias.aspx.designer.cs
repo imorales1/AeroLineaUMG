@@ -78,6 +78,15 @@ namespace AeroLinea.Forms
         protected global::System.Web.UI.WebControls.LinkButton CmdAgregar;
 
         /// <summary>
+        /// Control CmdExportar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton CmdExportar;
+
+        /// <summary>
         /// Control GrdCompañias.
         /// </summary>
         /// <remarks>

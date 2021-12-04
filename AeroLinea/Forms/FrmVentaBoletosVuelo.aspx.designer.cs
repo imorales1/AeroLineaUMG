@@ -51,6 +51,24 @@ namespace AeroLinea.Forms
         protected global::System.Web.UI.WebControls.View ViewFiltro;
 
         /// <summary>
+        /// Control TxtFechaInicial.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtFechaInicial;
+
+        /// <summary>
+        /// Control TxtFechaFinal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TxtFechaFinal;
+
+        /// <summary>
         /// Control TxtBoleto.
         /// </summary>
         /// <remarks>
@@ -96,13 +114,13 @@ namespace AeroLinea.Forms
         protected global::System.Web.UI.WebControls.LinkButton CmdBuscar;
 
         /// <summary>
-        /// Control CmdExportar.
+        /// Control CmdReporte.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton CmdExportar;
+        protected global::System.Web.UI.WebControls.LinkButton CmdReporte;
 
         /// <summary>
         /// Control CmdAgregar.

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AeroLinea.Negocio;
+using System.Data;
 
 namespace AeroLinea.Forms
 {
@@ -85,7 +86,8 @@ namespace AeroLinea.Forms
 
                 if(Modo == ModosDeTecleo.Grabar)
                 {
-                    Helper.Generica.Mensaje(this, "Registro grabado con éxito");
+                    //Helper.Generica.Mensaje(this, "Registro grabado con éxito");
+                    ConsultarClienteCreado();
                     LimpiarCampos();
                 }
                 else
@@ -104,6 +106,23 @@ namespace AeroLinea.Forms
             }
         }
 
+        private void ConsultarClienteCreado()
+        {
+            try
+            {
+                DataRow row = null;
+                Clientes cl = new Clientes();
+                row = cl.ConsultarClienteCreado();
+
+                if(row != null)
+                {
+                    Helper.Generica.Mensaje(this, "Código de cliente: " + row["IdCliente"].ToString());
+                }
+            }catch(Exception ex)
+            {
+                Helper.Generica.Mensaje(this, ex.Message);
+            }
+        }
         private void LimpiarCampos()
         {
             try

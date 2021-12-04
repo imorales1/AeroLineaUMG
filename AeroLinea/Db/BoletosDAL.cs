@@ -9,7 +9,7 @@ namespace AeroLinea.Db
 {
     public class BoletosDAL:CadenaDB
     {
-        public DataTable Buscar(int? IdBoleto, string Clase, int? IdVuelo)
+        public DataTable Buscar(DateTime? FechaInicial, DateTime? FechaFinal, int? IdBoleto, string Clase, int? IdVuelo)
         {
             DataTable tbl = new DataTable();
             using(MySqlConnection cn = new MySqlConnection(cadena))
@@ -20,6 +20,8 @@ namespace AeroLinea.Db
                     using (MySqlCommand cmd = new MySqlCommand("UpSBoletos", cn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PFechaInicial", FechaInicial);
+                        cmd.Parameters.AddWithValue("PFechaFinal", FechaFinal);
                         cmd.Parameters.AddWithValue("PIdBoleto", IdBoleto == 0 ? null : IdBoleto);
                         cmd.Parameters.AddWithValue("PClase", Clase == ""? null : Clase);
                         cmd.Parameters.AddWithValue("PIdVuelo", IdVuelo == 0 ? null : IdVuelo);

@@ -8,6 +8,7 @@ using AeroLinea.Negocio;
 using AeroLinea.Helper;
 using System.IO;
 using Microsoft.Reporting.WebForms;
+using System.Data;
 
 namespace AeroLinea.Forms
 {
@@ -44,11 +45,6 @@ namespace AeroLinea.Forms
             Buscar();
         }
 
-        protected void CmdExportar_Click(object sender, EventArgs e)
-        {
-
-        }
-
         protected void CmdAgregar_Click(object sender, EventArgs e)
         {
             MultiView.SetActiveView(ViewTecleo);
@@ -70,8 +66,6 @@ namespace AeroLinea.Forms
                 {
                     Generica.Mensaje(this, "Registro grabado con éxito");
                     LimpiarCampos();
-                    FrmBoletos frm = new FrmBoletos();
-                    frm.IdBoleto = 2;
                     Response.Redirect("FrmBoletos.aspx");
                 }
                 else
@@ -113,6 +107,25 @@ namespace AeroLinea.Forms
             {
                 VentaBoletos vb = new VentaBoletos();
                 VentaBoletos.IdBoleto = TxtBoleto.Text.Equals("") ? 0 : Convert.ToInt32(TxtBoleto.Text);
+                if(TxtFechaInicial.Text != "")
+                {
+                    vb.FechaInicial = Convert.ToDateTime(TxtFechaInicial.Text);
+                    if(TxtFechaInicial.Text == "")
+                    {
+                        Generica.Mensaje(this, "El campo fecha final es necesario para continuar con el proceo!");
+                        return;
+                    }
+                    else
+                    {
+                        vb.FechaFinal = Convert.ToDateTime(TxtFechaFinal.Text);
+                    }
+                }
+                else
+                {
+                    vb.FechaInicial = null;
+                    vb.FechaFinal = null;
+                }
+
                 vb.Clase = TxtClase.Text.Trim();
                 vb.IdVuelo = Convert.ToInt32(CboVuelosProgramados.SelectedValue);
                 GrdBoletos.DataSource = vb.Buscar();
@@ -144,6 +157,68 @@ namespace AeroLinea.Forms
         {
             Grabar = 1,
             Modificar =2
+        }
+
+        protected void TxtCliente_TextChanged1(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable tbl;
+                DataRow row;
+                Clientes cl = new Clientes();
+                Clientes.IdCliente = Convert.ToInt32(TxtCliente.Text);
+
+                row = cl.ConsultarClienteCreado();
+                Clientes.IdCliente = 0;
+
+                if (row != null)
+                {
+                    TxtNombreCLiente.Text = row["Cliente"].ToString();
+                }
+                else
+                {
+                    TxtNombreCLiente.Text = "Cliente no encontrado";
+                }
+            }
+            catch (Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
+        }
+
+        protected void CmdReporte_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                VentaBoletos vb = new VentaBoletos();
+                VentaBoletos.IdBoleto = TxtBoleto.Text.Equals("") ? 0 : Convert.ToInt32(TxtBoleto.Text);
+                if (TxtFechaInicial.Text != "")
+                {
+                    vb.FechaInicial = Convert.ToDateTime(TxtFechaInicial.Text);
+                    if (TxtFechaInicial.Text == "")
+                    {
+                        Generica.Mensaje(this, "El campo fecha final es necesario para continuar con el proceo!");
+                        return;
+                    }
+                    else
+                    {
+                        vb.FechaFinal = Convert.ToDateTime(TxtFechaFinal.Text);
+                    }
+                }
+                else
+                {
+                    vb.FechaInicial = null;
+                    vb.FechaFinal = null;
+                }
+
+                vb.Clase = TxtClase.Text.Trim();
+                vb.IdVuelo = Convert.ToInt32(CboVuelosProgramados.SelectedValue);
+                Response.Redirect("FrmReportes.aspx");
+            }
+            catch (Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
         }
     }
 }

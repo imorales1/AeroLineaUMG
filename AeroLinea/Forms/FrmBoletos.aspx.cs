@@ -18,11 +18,11 @@ namespace AeroLinea.Forms
         {
             if (!Page.IsPostBack)
             {
-                GenerarBoleto(2);
+                GenerarBoleto();
             }
         }
 
-        public void GenerarBoleto(int IdBoleto)
+        public void GenerarBoleto()
         {
             try
             {
@@ -32,13 +32,15 @@ namespace AeroLinea.Forms
                 string Fullpath = Path + "\\Reportes\\RptBoletoVuelo.rdlc";
                 if (!File.Exists(Fullpath))
                 {
-                    VentaBoletos.IdBoleto = IdBoleto;
+                    ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reportes/RptBoletoVuelo.rdlc");
                     ReportViewer1.LocalReport.DataSources.Clear();
-                    ReportDataSource rp = new ReportDataSource("DataSet", vb.Buscar());
+                    ReportDataSource rp = new ReportDataSource("DataSet1", vb.Buscar());
                     ReportViewer1.LocalReport.DataSources.Add(rp);
+                    ReportViewer1.DataBind();
                     ReportViewer1.LocalReport.Refresh();
                     ReportViewer1.Visible = true;
                 }
+                VentaBoletos.IdBoleto = 0;
             }
             catch (Exception ex)
             {

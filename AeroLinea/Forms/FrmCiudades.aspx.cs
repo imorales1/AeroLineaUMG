@@ -82,6 +82,9 @@ namespace AeroLinea.Forms
             try
             {
                 MultiView.SetActiveView(ViewFiltro);
+                LimpiarCampos();
+                Modo = ModoDeTecleo.Grabar;
+                Ciudades.IdCiudad = 0;
                 Buscar();
             }
             catch (Exception ex)
@@ -99,7 +102,6 @@ namespace AeroLinea.Forms
                 cd.Nombre = TxtCiudadF.Text;
                 GrdCiudades.DataSource = cd.Buscar();
                 GrdCiudades.DataBind();
-                Modo = ModoDeTecleo.Modificar;
             }
             catch (Exception ex)
             {
@@ -116,6 +118,7 @@ namespace AeroLinea.Forms
                 TxtCiudadT.Text = DescripcionCiudad[1];
                 CboPaisesT.SelectedValue = ((HiddenField)GrdCiudades.SelectedRow.Cells[2].FindControl("HdnPais")).Value.ToString();
                 Ciudades.IdCiudad = Convert.ToInt32(((HiddenField)GrdCiudades.SelectedRow.Cells[2].FindControl("HdnPais")).Value);
+                Modo = ModoDeTecleo.Modificar;
                 MultiView.SetActiveView(ViewTecleo);
             }catch(Exception ex)
             {
@@ -142,6 +145,7 @@ namespace AeroLinea.Forms
         {
             try
             {
+                if (!Generica.ValidarTextBox(ref TxtCiudadT)) return;
                 Ciudades cd = new Ciudades();
                 cd.Nombre = TxtCiudadT.Text.Trim();
                 cd.IdPais = Convert.ToInt32(CboPaisesT.SelectedValue);

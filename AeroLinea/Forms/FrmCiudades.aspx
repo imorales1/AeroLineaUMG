@@ -69,7 +69,7 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField>
                                                         <ItemTemplate>
-                                                            <asp:LinkButton ID="CmdEliminar" runat="server" CausesValidation="false" CssClass="btn btn-danger btn-xs" CommandName="Delete"><li class="fa fa-trash"></li></asp:LinkButton>
+                                                            <asp:LinkButton ID="CmdEliminar" runat="server" CausesValidation="false" CssClass="btn btn-danger btn-xs" CommandName="Delete" OnClientClick="return EliminarRegistro(this);"><li class="fa fa-trash"></li></asp:LinkButton>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
                                                     </asp:TemplateField>
@@ -96,13 +96,13 @@
                                             <div class="col-md-3">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Nombre" runat="server" />
-                                                    <asp:TextBox ID="TxtCiudadT" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                    <asp:TextBox ID="TxtCiudadT" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="País" runat="server" />
-                                                    <asp:DropDownList ID="CboPaisesT" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
+                                                    <asp:DropDownList ID="CboPaisesT" runat="server" CssClass="form-control select2" Width="100%" BackColor="#FFFFCC"></asp:DropDownList>
                                                 </div>
                                             </div>
                                         </div>                          

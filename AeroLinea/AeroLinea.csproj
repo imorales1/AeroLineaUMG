@@ -2525,7 +2525,9 @@
     <Content Include="DataSet\DataSet.xss">
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Forms\FrmReportes.aspx" />
     <Content Include="Querys\Script Creación BD.sql" />
     <Content Include="Querys\Stored Procedures.sql" />
     <Content Include="Scripts\bootbox.all.js" />
@@ -2707,6 +2709,13 @@
     <Compile Include="Negocio\Ciudades.cs" />
     <Compile Include="Negocio\Clientes.cs" />
     <Compile Include="Negocio\Compañias.cs" />
+    <Compile Include="Forms\FrmReportes.aspx.cs">
+      <DependentUpon>FrmReportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Forms\FrmReportes.aspx.designer.cs">
+      <DependentUpon>FrmReportes.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Negocio\LoginN.cs" />
     <Compile Include="Negocio\Usuarios.cs" />
     <Compile Include="Negocio\VentaBoletos.cs" />
@@ -2750,6 +2759,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reportes\RptBoletosVendidos.rdlc" />
     <EmbeddedResource Include="Reportes\RptBoletoVuelo.rdlc" />
   </ItemGroup>
   <PropertyGroup>

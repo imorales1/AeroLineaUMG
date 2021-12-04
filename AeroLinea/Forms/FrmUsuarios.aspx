@@ -138,7 +138,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <asp:Label Text="Contraseña" runat="server" />
-                                                            <asp:TextBox ID="TxtContraseña" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Password"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtContraseña" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Password" MaxLength="10"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">

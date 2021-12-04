@@ -20,7 +20,7 @@
                                         <asp:TextBox runat="server" ID="TxtCriterioBusqueda" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
                                     </div>
                                 </div>
-                                <div class="col-md-4"></div>
+                                <div class="col-md-2"></div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <br />
@@ -31,6 +31,12 @@
                                     <div class="form-group">
                                         <br />
                                         <asp:LinkButton ID="CmdAgregar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdAgregar_Click">Grabar Nuevo</asp:LinkButton>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <br />
+                                        <asp:LinkButton ID="CmdExportar" Text="text" runat="server" CssClass="btn btn-success" Width="100%"><li class="fa fa-file-excel">Exportar</li></asp:LinkButton>
                                     </div>
                                 </div>
                             </div>
@@ -138,6 +144,9 @@
                 </div>
             </section>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="CmdExportar" />
+        </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContenScriptBody" runat="server">

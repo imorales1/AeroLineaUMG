@@ -9,7 +9,7 @@ namespace AeroLinea.Db
 {
     public class ClientesDAL : CadenaDB
     {
-        public DataTable Buscar(string Criterio)
+        public DataTable Buscar(string Criterio, int? Id)
         {
             DataTable tbl = new DataTable();
             using (MySqlConnection cn = new MySqlConnection(cadena))
@@ -33,6 +33,37 @@ namespace AeroLinea.Db
             }
 
             return tbl;
+        }
+
+        public DataRow ConsultarClienteCreado(int IdCliente)
+        {
+            DataTable tbl = new DataTable();
+            DataRow row = null;
+            using (MySqlConnection cn = new MySqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("UpSValidaExistenciaCliente", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PIdCliente", IdCliente);
+                        MySqlDataReader Rd = cmd.ExecuteReader();
+                        tbl.Load(Rd);
+                        if(tbl.Rows.Count > 0)
+                        {
+                            row = tbl.Rows[0];
+                        }
+                    }
+                    cn.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+
+            return row;
         }
 
         public void GrabarModificar(string Nombre, string Apellido, string DPI, string Direccion, int? IdCliente)
