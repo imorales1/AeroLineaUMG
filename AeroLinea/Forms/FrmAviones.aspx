@@ -105,31 +105,31 @@
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Compañia" runat="server" />
-                                                    <asp:DropDownList ID="CboCompañiasT" runat="server" CssClass="form-control select2" Width="100%"></asp:DropDownList>
+                                                    <asp:DropDownList ID="CboCompañiasT" runat="server" CssClass="form-control select2" Width="100%" BackColor="#FFFFCC"></asp:DropDownList>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Turbinas" runat="server" />
-                                                    <asp:TextBox ID="TxtTurbinas" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                    <asp:TextBox ID="TxtTurbinas" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC" MaxLength="1" TextMode="Number"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Asientos" runat="server" />
-                                                    <asp:TextBox ID="TxtAsientos" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                    <asp:TextBox ID="TxtAsientos" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC" MaxLength="2" TextMode="Number"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Peso" runat="server" />
-                                                    <asp:TextBox ID="TxtPeso" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                    <asp:TextBox ID="TxtPeso" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC" MaxLength="5" TextMode="Number"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class=" form-group">
                                                     <asp:Label Text="Modelo" runat="server" />
-                                                    <asp:TextBox ID="TxtModeloT" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                    <asp:TextBox ID="TxtModeloT" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC" MaxLength="25"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>                          

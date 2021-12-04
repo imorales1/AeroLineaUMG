@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Drawing;
 using AeroLinea.Negocio;
 using System.Data;
+using AeroLinea.Helper;
 
 namespace AeroLinea.Forms
 {
@@ -42,6 +43,13 @@ namespace AeroLinea.Forms
         {
             try
             {
+                if (!Generica.ValidarTextBox(ref TxtNombres)) return;
+                if (!Generica.ValidarTextBox(ref TxtApellidos)) return;
+                if (!Generica.ValidarTextBox(ref TxtUsuario)) return;
+                if (!Generica.ValidarCombo(ref CboRoles)) return;
+                if (!Generica.ValidarTextBox(ref TxtContraseña)) return;
+                if (!Generica.ValidarTextBox(ref TxtContraseña)) return;
+
                 if (!CompararContraseñas(TxtContraseña.Text.Trim(), TxtConfContraseña.Text.Trim())) {
                     Helper.Generica.Mensaje(this, "Las contraseñas ingresadas no coinciden");
                     return;

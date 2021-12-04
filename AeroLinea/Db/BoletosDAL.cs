@@ -65,5 +65,27 @@ namespace AeroLinea.Db
                 }
             }
         }
+
+        public void Eliminar(int IdBoleto)
+        {
+            using (MySqlConnection cn = new MySqlConnection(cadena))
+            {
+                try
+                {
+                    cn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("UpDBoletos", cn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("PIdBoleto", IdBoleto);
+                        cmd.ExecuteNonQuery();
+                    }
+                    cn.Close();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
     }
 }

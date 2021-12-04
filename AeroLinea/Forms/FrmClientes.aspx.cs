@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using AeroLinea.Negocio;
 using System.Data;
+using AeroLinea.Helper;
 
 namespace AeroLinea.Forms
 {
@@ -77,6 +78,10 @@ namespace AeroLinea.Forms
         {
             try
             {
+                if (!Generica.ValidarTextBox(ref TxtNombres)) return;
+                if (!Generica.ValidarTextBox(ref TxtApellidos)) return;
+                if (!Generica.ValidarTextBox(ref TxtDpi)) return;
+                if (!Generica.ValidarTextBox(ref TxtDireccion)) return;
                 Clientes cl = new Clientes();
                 cl.Nombres = TxtNombres.Text;
                 cl.Apellidos = TxtApellidos.Text;

@@ -109,13 +109,13 @@
                                                     <div class="col-md-6">
                                                         <div class=" form-group">
                                                             <asp:Label Text="Nombres" runat="server" />
-                                                            <asp:TextBox ID="TxtNombres" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtNombres" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC" MaxLength="35"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class=" form-group">
                                                             <asp:Label Text="Apellidos" runat="server" />
-                                                            <asp:TextBox ID="TxtApellidos" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtApellidos" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC" MaxLength="35"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,13 +123,13 @@
                                                     <div class="col-md-6">
                                                         <div class=" form-group">
                                                             <asp:Label Text="Usuario" runat="server" />
-                                                            <asp:TextBox ID="TxtUsuario" runat="server" CssClass="form-control input-sm" Width="100%"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtUsuario" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC" MaxLength="30"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class=" form-group">
                                                             <asp:Label Text="Rol" runat="server" />
-                                                            <asp:DropDownList ID="CboRoles" runat="server" CssClass="form-control" Width="100%"></asp:DropDownList>
+                                                            <asp:DropDownList ID="CboRoles" runat="server" CssClass="form-control" Width="100%" BackColor="#FFFFCC"></asp:DropDownList>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -138,13 +138,13 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <asp:Label Text="Contraseña" runat="server" />
-                                                            <asp:TextBox ID="TxtContraseña" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Password"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtContraseña" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Password" MaxLength="10" BackColor="#FFFFCC"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <asp:Label Text="ConfirmarContraseña" runat="server" />
-                                                            <asp:TextBox ID="TxtConfContraseña" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Password"></asp:TextBox>
+                                                            <asp:TextBox ID="TxtConfContraseña" runat="server" CssClass="form-control input-sm" Width="100%" TextMode="Password" BackColor="#FFFFCC" MaxLength="10"></asp:TextBox>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    r<asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
     <asp:UpdatePanel ID="PanelPrincipal" runat="server">
         <ContentTemplate>
             <section class="content-header">
@@ -63,7 +63,7 @@
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <br />
-                                        <asp:LinkButton ID="CmdReporte" Text="text" runat="server" CssClass="btn btn-success" Width="100%" OnClick="CmdReporte_Click"><li class="far fa-file-pdf">Generar Reporte</li></asp:LinkButton>
+                                        <asp:LinkButton ID="CmdReporte" Text="text" runat="server" CssClass="btn btn-success" Width="100%" OnClick="CmdReporte_Click"><li class="far fa-file-pdf"> Generar Reporte</li></asp:LinkButton>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -85,6 +85,7 @@
                                                     <asp:BoundField DataField="NoVuelo" HeaderText="No. Vuelo" SortExpression="NoVuelo" />
                                                     <asp:BoundField DataField="Fecha" HeaderText="Fecha" SortExpression="Fecha" DataFormatString="{0:d}" />
                                                     <asp:BoundField DataField="Boleto" HeaderText="Boleto" SortExpression="Boleto" />
+                                                    <asp:BoundField DataField="Clase" HeaderText="Clase" SortExpression="Clase" />
                                                     <asp:BoundField DataField="Compañia" HeaderText="Compañia" SortExpression="Compañia" />
                                                     <asp:BoundField DataField="Modelo" HeaderText="Avión" SortExpression="Modelo" />
                                                     <asp:BoundField DataField="Asiento" HeaderText="No. Asiento" SortExpression="Asiento" />
@@ -94,8 +95,9 @@
                                                         <EditItemTemplate>
                                                         </EditItemTemplate>
                                                         <ItemTemplate>
-                                                            <asp:HiddenField ID="HdnAvion" runat="server" Value='<%# Eval("IdBoleto") %>' />
+                                                            <asp:HiddenField ID="HdnBoleto" runat="server" Value='<%# Eval("IdBoleto") %>' />
                                                             <asp:HiddenField ID="HdnVuelo" runat="server" Value='<%# Eval("IdVuelo") %>' />
+                                                            <asp:HiddenField ID="HdnCliente" runat="server" Value='<%# Eval("IdCliente") %>' />
                                                             <asp:LinkButton ID="CmdVuelo" runat="server" CommandName="Select" CssClass="btn btn-primary btn-xs"><li class="fas fa-edit"></li></asp:LinkButton>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Center" />
@@ -136,13 +138,13 @@
                                                 <div class="col-md-2">
                                                     <div class=" form-group">
                                                         <asp:Label Text="No. Asiento" runat="server" />
-                                                        <asp:TextBox ID="TxtAsientoT" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtAsientoT" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC" MaxLength="2" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class=" form-group">
                                                         <asp:Label Text="Costo" runat="server" />
-                                                        <asp:TextBox ID="TxtCostoT" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtCostoT" runat="server" CssClass="form-control input-sm" Width="100%" BackColor="#FFFFCC" MaxLength="5" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -154,7 +156,7 @@
                                                 <div class="col-md-2">
                                                     <div class=" form-group">
                                                         <asp:Label Text="Cliente" runat="server" />
-                                                        <asp:TextBox ID="TxtCliente" runat="server" CssClass="form-control select2" Width="100%" BackColor="#FFFFCC" AutoPostBack="true" OnTextChanged="TxtCliente_TextChanged1"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtCliente" runat="server" CssClass="form-control select2" Width="100%" BackColor="#FFFFCC" AutoPostBack="true" OnTextChanged="TxtCliente_TextChanged1" MaxLength="3" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-3">

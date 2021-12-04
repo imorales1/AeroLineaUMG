@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AeroLinea.Negocio;
+using AeroLinea.Helper;
 
 namespace AeroLinea.Forms
 {
@@ -36,7 +37,7 @@ namespace AeroLinea.Forms
                 }
             }catch(Exception ex)
             {
-                Helper.Generica.Mensaje(this, ex.Message);
+                Generica.Mensaje(this, ex.Message);
             }
         }
 
@@ -79,6 +80,10 @@ namespace AeroLinea.Forms
         {
             try
             {
+                if (!Generica.ValidarTextBox(ref TxtTurbinas)) return;
+                if (!Generica.ValidarTextBox(ref TxtAsientos)) return;
+                if (!Generica.ValidarTextBox(ref TxtPeso)) return;
+
                 AeroNaves an = new AeroNaves();
                 an.Turbinas = Convert.ToInt32(TxtTurbinas.Text);
                 an.Pasajeros = Convert.ToInt32(TxtAsientos.Text);

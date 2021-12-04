@@ -309,6 +309,30 @@
                         });
                 }
 
+                function EliminarRegistro(sender) {
+                    if ($(sender).attr("confirmed") == "true") { return true; }
+
+                    swal({
+                        title: "Esta Seguro?",
+                        text: "No podras Recuperar el registro eliminado!",
+                        type: "warning",
+                        showCancelButton: true,
+                        cancelButtonText: "Cancelar",
+                        confirmButtonClass: "btn-danger",
+                        confirmButtonText: "Si, eliminarlo!",
+                        closeOnConfirm: true
+                    },
+                        function (isConfirm) {
+                            if (isConfirm) {
+                                $(sender).attr("confirmed", isConfirm).trigger("click");
+                                //$(sender).trigger("click");
+                                var name = sender.pathname.replace("__doPostBack('", "").replace("','')", "");
+                                __doPostBack(name, '');
+                                return true;
+                            }
+                        });
+                    return false;
+                }
             </script>
 
             <asp:ContentPlaceHolder ID="ContenScriptBody" runat="server">

@@ -146,6 +146,7 @@ namespace AeroLinea.Forms
             try
             {
                 if (!Generica.ValidarTextBox(ref TxtCiudadT)) return;
+                if (!Generica.ValidarCombo(ref CboPaisesT)) return;
                 Ciudades cd = new Ciudades();
                 cd.Nombre = TxtCiudadT.Text.Trim();
                 cd.IdPais = Convert.ToInt32(CboPaisesT.SelectedValue);

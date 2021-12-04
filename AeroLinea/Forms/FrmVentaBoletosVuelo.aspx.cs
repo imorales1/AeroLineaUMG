@@ -15,6 +15,7 @@ namespace AeroLinea.Forms
     public partial class FrmVentaBoletosVuelo : System.Web.UI.Page
     {
         private static ModosDeTecleo Modo { get; set; }
+        private static DataTable tabladatos;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!Page.IsPostBack)
@@ -54,10 +55,15 @@ namespace AeroLinea.Forms
         {
             try
             {
+                if (!Generica.ValidarTextBox(ref TxtClaseT)) return;
+                if (!Generica.ValidarTextBox(ref TxtAsientoT)) return;
+                if (!Generica.ValidarTextBox(ref TxtCostoT)) return;
+                if (!Generica.ValidarCombo(ref CboVuelosProgramadosT)) return;
+                if (!Generica.ValidarTextBox(ref TxtCliente)) return;
                 VentaBoletos vb = new VentaBoletos();
                 vb.Clase = TxtClaseT.Text.Trim();
                 vb.Asiento = Convert.ToInt32(TxtAsientoT.Text);
-                vb.Costo = Convert.ToInt32(TxtCostoT.Text);
+                vb.Costo = Convert.ToDecimal(TxtCostoT.Text);
                 vb.IdVuelo = Convert.ToInt32(CboVuelosProgramadosT.SelectedValue);
                 vb.IdCliente = Convert.ToInt32(TxtCliente.Text);
                 vb.GrabarModificar();
@@ -72,6 +78,8 @@ namespace AeroLinea.Forms
                 {
                     Generica.Mensaje(this, "Registro Modificado con éxito");
                     Modo = ModosDeTecleo.Grabar;
+                    MultiView.SetActiveView(ViewFiltro);
+                    Buscar();
                 }
 
             }catch(Exception ex)
@@ -93,12 +101,37 @@ namespace AeroLinea.Forms
 
         protected void GrdBoletos_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-
+            try
+            {
+                VentaBoletos boleto = new VentaBoletos();
+                VentaBoletos.IdBoleto = Convert.ToInt32(((HiddenField)GrdBoletos.Rows[e.RowIndex].Cells[8].FindControl("HdnBoleto")).Value);
+                boleto.Eliminar();
+            }
+            catch(Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
         }
 
         protected void GrdBoletos_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                VentaBoletos boleto = new VentaBoletos();
+                VentaBoletos.IdBoleto = Convert.ToInt32(((HiddenField)GrdBoletos.SelectedRow.Cells[9].FindControl("HdnBoleto")).Value);
+                TxtClaseT.Text = GrdBoletos.SelectedRow.Cells[3].Text.Trim();
+                TxtAsientoT.Text = GrdBoletos.SelectedRow.Cells[6].Text.Trim();
+                TxtCostoT.Text = GrdBoletos.SelectedRow.Cells[8].Text.Trim();
+                CboVuelosProgramadosT.SelectedValue = ((HiddenField)GrdBoletos.SelectedRow.Cells[9].FindControl("HdnVuelo")).Value.ToString();
+                TxtCliente.Text = ((HiddenField)GrdBoletos.SelectedRow.Cells[9].FindControl("HdnCliente")).Value.ToString();
+                TxtCliente_TextChanged1(TxtCliente, e);
+                Modo = ModosDeTecleo.Modificar;
+                MultiView.SetActiveView(ViewTecleo);
+            }
+            catch(Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
         }
 
         public void Buscar()
@@ -128,8 +161,10 @@ namespace AeroLinea.Forms
 
                 vb.Clase = TxtClase.Text.Trim();
                 vb.IdVuelo = Convert.ToInt32(CboVuelosProgramados.SelectedValue);
-                GrdBoletos.DataSource = vb.Buscar();
+                tabladatos = vb.Buscar();
+                GrdBoletos.DataSource = tabladatos;
                 GrdBoletos.DataBind();
+                VentaBoletos.tblreporte = tabladatos;
                 VentaBoletos.IdBoleto = 0;
                 LblRegistros.Text = "Registros encontrados: " + GrdBoletos.Rows.Count.ToString();
             }catch(Exception ex)
@@ -163,7 +198,6 @@ namespace AeroLinea.Forms
         {
             try
             {
-                DataTable tbl;
                 DataRow row;
                 Clientes cl = new Clientes();
                 Clientes.IdCliente = Convert.ToInt32(TxtCliente.Text);
@@ -190,30 +224,15 @@ namespace AeroLinea.Forms
         {
             try
             {
-                VentaBoletos vb = new VentaBoletos();
-                VentaBoletos.IdBoleto = TxtBoleto.Text.Equals("") ? 0 : Convert.ToInt32(TxtBoleto.Text);
-                if (TxtFechaInicial.Text != "")
+                if (GrdBoletos.Rows.Count > 0)
                 {
-                    vb.FechaInicial = Convert.ToDateTime(TxtFechaInicial.Text);
-                    if (TxtFechaInicial.Text == "")
-                    {
-                        Generica.Mensaje(this, "El campo fecha final es necesario para continuar con el proceo!");
-                        return;
-                    }
-                    else
-                    {
-                        vb.FechaFinal = Convert.ToDateTime(TxtFechaFinal.Text);
-                    }
+                    VentaBoletos.tblreporte = tabladatos;
+                    Response.Redirect("FrmReportes.aspx");
                 }
                 else
                 {
-                    vb.FechaInicial = null;
-                    vb.FechaFinal = null;
+                    Generica.Mensaje(this, "No hay datos para generar reporte");
                 }
-
-                vb.Clase = TxtClase.Text.Trim();
-                vb.IdVuelo = Convert.ToInt32(CboVuelosProgramados.SelectedValue);
-                Response.Redirect("FrmReportes.aspx");
             }
             catch (Exception ex)
             {

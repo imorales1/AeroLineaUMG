@@ -92,14 +92,14 @@
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <asp:Label Text="Nombre" runat="server" />
-                                                    <asp:TextBox ID="TxtNombre" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="40"></asp:TextBox>
+                                                    <asp:TextBox ID="TxtNombre" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="40" BackColor="#FFFFCC"></asp:TextBox>
                                                 </div>
                                             </div>
                                             <div class="col-md-2">
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <asp:Label Text="Dirección" runat="server" />
-                                                        <asp:TextBox ID="TxtDireccion" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="60"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtDireccion" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="60" BackColor="#FFFFCC"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <asp:Label Text="Correo" runat="server" />
-                                                        <asp:TextBox ID="TxtCorreo" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="60"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtCorreo" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="60" BackColor="#FFFFCC" TextMode="Email"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>
@@ -115,7 +115,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <asp:Label Text="Telefono" runat="server" />
-                                                        <asp:TextBox ID="TxtTelefono" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="12"></asp:TextBox>
+                                                        <asp:TextBox ID="TxtTelefono" runat="server" CssClass="form-control input-sm select2" Width="100%" MaxLength="14" BackColor="#FFFFCC" TextMode="Number"></asp:TextBox>
                                                     </div>
                                                 </div>
                                             </div>

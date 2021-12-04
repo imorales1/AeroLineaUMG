@@ -123,15 +123,28 @@ namespace AeroLinea.Helper
                     control.Focus();
                     return false;
                 }
-                else
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return true;
+        }
+
+        public static bool ValidarCombo(ref DropDownList control)
+        {
+            try
+            {
+                if (control.SelectedValue.Equals("0"))
                 {
-                    return true;
+                    return false;
                 }
             }
             catch (Exception)
             {
                 throw;
             }
+            return true;
         }
 
         public void LLenarCombos(ref DropDownList control, int parametro = 0)

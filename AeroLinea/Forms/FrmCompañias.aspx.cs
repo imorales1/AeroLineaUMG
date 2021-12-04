@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using AeroLinea.Negocio;
+using AeroLinea.Helper;
 
 namespace AeroLinea.Forms
 {
@@ -101,6 +102,7 @@ namespace AeroLinea.Forms
         {
             try
             {
+
                 MultiView.SetActiveView(ViewTecleo);
                 Compañias.IdCompañia = Convert.ToInt32(((HiddenField)GrdCompañias.SelectedRow.FindControl("HdnCompañia")).Value);
                 TxtNombre.Text = GrdCompañias.SelectedRow.Cells[0].Text.Equals("&nbsp;")? null : GrdCompañias.SelectedRow.Cells[0].Text;
@@ -109,9 +111,9 @@ namespace AeroLinea.Forms
                 TxtTelefono.Text = GrdCompañias.SelectedRow.Cells[3].Text.Equals("&nbsp;")? null : GrdCompañias.SelectedRow.Cells[3].Text;
                 Modo = ModoDeTecleo.Modificar;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Helper.Generica.Mensaje(this, ex.Message);
             }
         }
 

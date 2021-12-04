@@ -20,7 +20,7 @@ namespace AeroLinea.Forms
                 {
                     if (Session["Usuario"] != null)
                     {
-                        //Response.Redirect("FrmGeneracionQuejas.aspx");
+                        Response.Redirect("FrmVentaBoletosVuelo.aspx");
                     }
                 }
             }
@@ -44,8 +44,7 @@ namespace AeroLinea.Forms
 
                 if (datos == null)
                 {
-                    Generica.Mensaje(this, "'El usuario o contraseña no coinciden");
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "Mensaje('" + "fgfdgdfgd" + "');", true);
+                    //Generica.Mensaje(this, "El usuario o contraseña no coinciden");
                     lblError.Text = "El usuario o contraseña no coinciden";
                 }
                 else

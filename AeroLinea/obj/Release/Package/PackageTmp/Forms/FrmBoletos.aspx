@@ -10,12 +10,16 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div style="width: 896px">
+    <center>
+        <br /><br /><br />
+        <br /><br /><br />
+        <form id="form1" runat="server">
+        <div style="width: 800px">
             <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-            <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="885px">
+            <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="750px">
             </rsweb:ReportViewer>
         </div>
     </form>
+    </center>
 </body>
 </html>

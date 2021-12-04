@@ -84,6 +84,11 @@ namespace AeroLinea.Forms
         {
             try
             {
+                if (!Generica.ValidarTextBox(ref TxtFechaT)) return;
+                if (!Generica.ValidarCombo(ref CboAviones)) return;
+                if (!Generica.ValidarCombo(ref CboCiudadesO)) return;
+                if (!Generica.ValidarCombo(ref CboCiudadesD)) return;
+
                 Vuelos vuelo = new Vuelos();
                 vuelo.Fecha = TxtFechaT.Text.Equals("") ? Convert.ToDateTime("01/01/1999") : Convert.ToDateTime(TxtFechaT.Text);
                 vuelo.IdAvion = Convert.ToInt32(CboAviones.SelectedValue);

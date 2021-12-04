@@ -35,7 +35,7 @@ namespace AeroLinea.Negocio
                 {
                     ReportViewer1.LocalReport.ReportPath = Server.MapPath("~/Reportes/RptBoletosVendidos.rdlc");
                     ReportViewer1.LocalReport.DataSources.Clear();
-                    tbl = vb.Buscar();
+                    tbl = vb.RptBoletos();
                     ReportDataSource rp = new ReportDataSource("DtBoletos", tbl);
                     ReportViewer1.LocalReport.DataSources.Add(rp);
                     ReportViewer1.DataBind();

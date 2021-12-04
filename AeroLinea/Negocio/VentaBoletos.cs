@@ -17,6 +17,7 @@ namespace AeroLinea.Negocio
         public int IdCliente { get; set; }
         public DateTime? FechaInicial { get; set; }
         public DateTime? FechaFinal { get; set; }
+        public static DataTable tblreporte { get; set; }
 
         public DataTable Buscar()
         {
@@ -43,5 +44,30 @@ namespace AeroLinea.Negocio
                 throw;
             }
         }
+
+        public void Eliminar()
+        {
+            try
+            {
+                BoletosDAL boleto = new BoletosDAL();
+                boleto.Eliminar(IdBoleto);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public DataTable RptBoletos()
+        {
+            try
+            {
+                return tblreporte;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
