@@ -11,7 +11,7 @@
 </head>
 <body>
     <center>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server">  
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <div style="width: 900px">
             <rsweb:ReportViewer ID="ReportViewer1" runat="server" Width="900px">
