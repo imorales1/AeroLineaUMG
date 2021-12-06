@@ -29,9 +29,9 @@ namespace AeroLinea.Forms
                     Modo = ModosDeTecleo.Grabar;
                     if (Session["Rol"].ToString() != "OPR")
                     {
-                        GrdBoletos.Columns[7].Visible = false;
-                        GrdBoletos.Columns[8].Visible = false;
-                        CmdAgregar.Enabled = false;
+                        GrdBoletos.Columns[9].Visible = false;
+                        GrdBoletos.Columns[10].Visible = false;
+                        CmdAgregar.Enabled = false;  
                     }
                 }
                 else
@@ -71,7 +71,6 @@ namespace AeroLinea.Forms
                 if(Modo == ModosDeTecleo.Grabar)
                 {
                     Generica.Mensaje(this, "Registro grabado con éxito");
-                    LimpiarCampos();
                     Response.Redirect("FrmBoletos.aspx");
                 }
                 else
@@ -82,7 +81,9 @@ namespace AeroLinea.Forms
                     Buscar();
                 }
 
-            }catch(Exception ex)
+                LimpiarCampos();
+            }
+            catch(Exception ex)
             {
                 Generica.Mensaje(this, ex.Message);
             }

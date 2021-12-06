@@ -39,6 +39,22 @@ namespace AeroLinea.Forms
             }
         }
 
+        private void LimpiarCampos()
+        {
+            try
+            {
+                TxtNombres.Text = string.Empty;
+                TxtApellidos.Text = string.Empty;
+                TxtUsuario.Text = string.Empty;
+                CboRoles.SelectedValue = "0";
+                TxtConfContraseña.Text = string.Empty;
+                TxtContraseña.Text = string.Empty;
+                Image1.ImageUrl = string.Empty;
+            }catch(Exception ex)
+            {
+                Generica.Mensaje(this, ex.Message);
+            }
+        }
         protected void CmdGrabarModificar_Click(object sender, EventArgs e)
         {
             try
@@ -83,6 +99,8 @@ namespace AeroLinea.Forms
                     MultiView.SetActiveView(ViewFiltro);
                     Buscar();
                 }
+
+                LimpiarCampos();
                 
             }
             catch(Exception ex)

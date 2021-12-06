@@ -18,7 +18,7 @@ namespace AeroLinea.Forms
             {
                 if (!Page.IsPostBack)
                 {
-                    if(Session["Usuario"] == null)
+                    if(Session["Usuario"] != null)
                     {
                         Modo = ModoDeTecleo.Grabar;
                         MultiView.SetActiveView(ViewFiltro);

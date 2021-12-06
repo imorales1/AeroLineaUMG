@@ -38,12 +38,12 @@
                                     <div class="form-group">
                                         <br />
                                         <asp:LinkButton ID="CmdAgregar" runat="server" CssClass="btn btn-primary" Width="100%" OnClick="CmdAgregar_Click">Grabar Nuevo</asp:LinkButton>
-                                    </div>
+                                    </div>   
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="card">
+                                    <div class="card">    
                                         <div class="card-header">
                                             <h3 class="card-title">Compañías</h3>
                                         </div>

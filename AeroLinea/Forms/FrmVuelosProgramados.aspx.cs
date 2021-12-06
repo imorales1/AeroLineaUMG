@@ -29,8 +29,8 @@ namespace AeroLinea.Forms
 
                         if (Session["Rol"].ToString() != "OPR")
                         {
-                            GrdVuelos.Columns[6].Visible = false;
                             GrdVuelos.Columns[7].Visible = false;
+                            GrdVuelos.Columns[8].Visible = false;
                             CmdAgregar.Enabled = false;
                         }
                     }

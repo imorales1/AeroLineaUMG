@@ -69,7 +69,6 @@ D:\source\AeroLinea\AeroLinea\AeroLinea\bin\Microsoft.AspNet.FriendlyUrls.xml
 D:\source\AeroLinea\AeroLinea\AeroLinea\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 D:\source\AeroLinea\AeroLinea\AeroLinea\bin\es\System.Web.Optimization.resources.dll
 D:\source\AeroLinea\AeroLinea\AeroLinea\bin\es\Microsoft.AspNet.FriendlyUrls.resources.dll
-D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\AeroLinea.csprojAssemblyReference.cache
 D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\AeroLinea.csproj.CoreCompileInputs.cache
 D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\AeroLinea.csproj.CopyComplete
 D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\AeroLinea.dll
@@ -177,3 +176,4 @@ D:\source\AeroLinea\AeroLinea\AeroLinea\bin\zh-CHS\Microsoft.ReportViewer.WinFor
 D:\source\AeroLinea\AeroLinea\AeroLinea\bin\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
 D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\RdlCompile.cache
 D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\RdlCompile.compiled
+D:\source\AeroLinea\AeroLinea\AeroLinea\obj\Debug\AeroLinea.csprojAssemblyReference.cache

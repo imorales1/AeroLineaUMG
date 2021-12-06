@@ -12,7 +12,7 @@
                 <div class="container-fluid">
                     <div class="box-body">
                     <asp:MultiView id="MultiView" runat="server">
-                        <asp:View ID="ViewFiltro" runat="server">
+                        <asp:View ID="ViewFiltro" runat="server">  
                             <div class="row">
                                 <div class="col-md-1">
                                     <div class="form-group">
